@@ -3,75 +3,81 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>診所打卡排班系統｜Oli 考勤系統 – 手機打卡、排班請假｜Olimedi 奧里</title>
-<meta name="description" content="Oli 考勤系統是專為診所設計的打卡與排班系統：手機定位打卡、診次排班、線上請假、加班時數自動計算、出勤報表一鍵匯出，月底不用再對帳。">
+<title>Oli考勤系統｜診所排班、打卡、請假、薪資一套搞定｜Olimedi 奧里</title>
+<meta name="description" content="專為牙醫與醫美診所設計的考勤系統。早午晚診排班、手機 QR 打卡、請假加班、每月薪資，在同一個系統完成。加 LINE 預約免費展示。">
 <link rel="canonical" href="https://olimedi.com/attendance.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Olimedi 奧里">
-<meta property="og:title" content="診所打卡排班系統｜Oli 考勤系統 – 手機打卡、排班請假｜Olimedi 奧里">
-<meta property="og:description" content="Oli 考勤系統是專為診所設計的打卡與排班系統：手機定位打卡、診次排班、線上請假、加班時數自動計算、出勤報表一鍵匯出，月底不用再對帳。">
+<meta property="og:site_name" content="Olimedi 奧里醫療資訊">
+<meta property="og:title" content="Oli考勤系統｜診所排班、打卡、請假、薪資一套搞定｜Olimedi 奧里">
+<meta property="og:description" content="專為牙醫與醫美診所設計的考勤系統。早午晚診排班、手機 QR 打卡、請假加班、每月薪資，在同一個系統完成。加 LINE 預約免費展示。">
 <meta property="og:url" content="https://olimedi.com/attendance.html">
+<meta property="og:image" content="https://olimedi.com/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#2E7D5B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Oli 考勤系統", "applicationCategory": "BusinessApplication", "operatingSystem": "Web, iOS, Android", "description": "Oli 考勤系統是專為診所設計的打卡與排班系統：手機定位打卡、診次排班、線上請假、加班時數自動計算、出勤報表一鍵匯出，月底不用再對帳。", "url": "https://olimedi.com/attendance.html", "publisher": {"@type": "Organization", "name": "Olimedi 奧里"}, "audience": {"@type": "Audience", "audienceType": "診所、牙醫診所、醫療院所"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Oli 考勤系統", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "description": "專為牙醫與醫美診所設計的考勤系統。早午晚診排班、手機 QR 打卡、請假加班、每月薪資，在同一個系統完成。加 LINE 預約免費展示。", "url": "https://olimedi.com/attendance.html", "image": "https://olimedi.com/img/att-hero.webp", "publisher": {"@type": "Organization", "name": "Olimedi 奧里醫療資訊"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://olimedi.com/"}, {"@type": "ListItem", "position": 2, "name": "Oli 考勤系統", "item": "https://olimedi.com/attendance.html"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "員工需要下載 App 嗎？", "acceptedAnswer": {"@type": "Answer", "text": "不需要，用手機瀏覽器就能打卡，也可以加到手機主畫面當作 App 使用。"}}, {"@type": "Question", "name": "可以防止代打卡嗎？", "acceptedAnswer": {"@type": "Answer", "text": "可以設定只能在診所位置範圍內打卡，並記錄打卡裝置。"}}, {"@type": "Question", "name": "排班可以依早中晚診排嗎？", "acceptedAnswer": {"@type": "Answer", "text": "可以，系統依診所常見的診次設計，支援輪班與調班。"}}, {"@type": "Question", "name": "出勤資料可以給會計計薪嗎？", "acceptedAnswer": {"@type": "Answer", "text": "可以，每月出勤與加班報表可一鍵匯出 Excel 給會計或記帳士。"}}]}</script>
 </head>
 <body>
 <header class="top"><div class="wrap">
-<a class="brand" href="index.html" aria-label="Olimedi 奧里 首頁"><svg viewBox="0 0 120 120" width="36" height="36" aria-hidden="true"><path d="M88.3 26.3 A44 44 0 1 1 60 16" fill="none" stroke="#2E7D5B" stroke-width="12" stroke-linecap="round"/><path d="M91 25 C 94 13, 103 6, 115 5 C 114 17, 105 25, 91 25 Z" fill="#7BB661"/><rect x="50" y="38" width="20" height="44" rx="6" fill="#F2A541"/><rect x="38" y="50" width="44" height="20" rx="6" fill="#F2A541"/></svg><b><span>Oli</span>medi</b><small>奧里醫療資訊</small></a>
-<nav class="main"><a href="materials.html">物料系統</a><a href="attendance.html" aria-current="page">考勤系統</a><a href="index.html#faq">常見問題</a><a class="btn btn-primary" href="https://line.me/R/ti/p/@336appfx" target="_blank" rel="noopener">LINE 諮詢</a></nav>
+<a class="brand" href="index.html" aria-label="Olimedi 奧里醫療資訊 首頁"><svg viewBox="0 0 120 120" width="36" height="36" aria-hidden="true"><path d="M88.3 26.3 A44 44 0 1 1 60 16" fill="none" stroke="#2E7D5B" stroke-width="12" stroke-linecap="round"/><path d="M91 25 C 94 13, 103 6, 115 5 C 114 17, 105 25, 91 25 Z" fill="#7BB661"/><rect x="50" y="38" width="20" height="44" rx="6" fill="#F2A541"/><rect x="38" y="50" width="44" height="20" rx="6" fill="#F2A541"/></svg><b><span>Oli</span>medi</b><small>奧里醫療資訊</small></a>
+<nav class="main"><a href="attendance.html" aria-current="page">考勤系統</a><a href="materials.html">物料系統</a><a href="index.html#how">預約展示</a><a class="btn btn-line" href="https://line.me/R/ti/p/@336appfx" target="_blank" rel="noopener">LINE 諮詢</a></nav>
 </div></header>
 <main>
 
-<section class="hero"><div class="wrap" style="grid-template-columns:1fr">
+<section class="hero"><div class="wrap">
 <div>
-<p class="crumb"><a href="index.html">首頁</a> / 考勤系統</p>
-<div style="display:flex;align-items:center;gap:14px;margin-bottom:20px"><div class="badge" style="background:#F2A541"><svg viewBox="0 0 40 40" width="32" height="32"><circle cx="20" cy="20" r="14" fill="none" stroke="#17332B" stroke-width="3"/><path d="M20 12 L20 20 L26 24" fill="none" stroke="#17332B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p class="eyebrow" style="margin:0"><span class="en">OLI</span> 考勤系統</p></div>
-<h1>診所打卡排班，<br>月底不用再對帳。</h1>
-<p class="lead">診所有早中晚診、輪班又常調班，打卡和加班算起來最麻煩。Oli 考勤系統讓員工用手機打卡、線上請假，出勤和加班時數自動整理好。</p>
-<div class="cta-row"><a class="btn btn-primary" href="https://line.me/R/ti/p/@336appfx" target="_blank" rel="noopener">加 LINE 預約展示</a><a class="btn btn-ghost" href="#features">看功能</a></div>
+<p class="crumb"><a href="index.html">首頁</a> / Oli 考勤系統</p>
+<p class="eyebrow">OLI 考勤系統</p>
+<h1>排班、打卡、薪資，<br><em>一套搞定</em></h1>
+<p class="lead">專為診所設計。從早午晚診排班、手機打卡、請假加班，到每月薪資，月底結算不用再對三份表。</p>
+<div class="cta-row"><a class="btn btn-line" href="https://line.me/R/ti/p/@336appfx" target="_blank" rel="noopener"><img class="av" src="img/oliver.svg" alt="" width="32" height="32">問 Oliver・預約免費展示</a></div>
+<div class="trust"><span>不用買打卡鐘</span><span>不用安裝 App</span><span>每間診所獨立資料庫</span></div>
 </div>
+<img class="hero-img shot bare" src="img/att-hero.webp" alt="Oli 考勤系統的總覽畫面與員工手機上的我的班表" width="1400" height="951" fetchpriority="high" decoding="async">
 </div></section>
-
-<section class="alt"><div class="wrap">
-<div class="grid2">
-<div><p class="eyebrow">以前</p><h2>這些狀況熟悉嗎？</h2><ul class="cross"><li>紙本打卡或打卡鐘，月底要一筆一筆對</li><li>排班表改來改去，LINE 群組訊息找不到</li><li>請假靠口頭或紙條，常常漏記</li><li>加班時數算不清，容易產生爭議</li></ul></div>
-<div><p class="eyebrow">用了 Oli 之後</p><h2>變成這樣</h2><ul class="check"><li>手機打卡，出勤紀錄自動彙整</li><li>線上排班表，調班有紀錄、大家都看得到</li><li>線上請假與核准，假別餘額自動計算</li><li>依出勤自動計算加班時數，有憑有據</li></ul></div>
-</div>
-</div></section>
-
-<section id="features"><div class="wrap">
-<p class="eyebrow">FEATURES</p>
-<h2>考勤系統的主要功能</h2>
-<p class="sub">針對診所日常流程設計，手機、平板、電腦都能用。</p>
-<div class="grid3"><div class="card"><div class="num">01</div><h3>手機打卡</h3><p>員工用手機打卡，可限定診所位置範圍，防止代打卡。</p></div><div class="card"><div class="num">02</div><h3>診次排班</h3><p>依早、午、晚診排班，支援輪班、調班與代班紀錄。</p></div><div class="card"><div class="num">03</div><h3>線上請假</h3><p>員工線上申請，主管手機核准，特休與各假別餘額自動計算。</p></div><div class="card"><div class="num">04</div><h3>加班計算</h3><p>依實際出勤自動計算加班時數，減少人工核對。</p></div><div class="card"><div class="num">05</div><h3>出勤報表</h3><p>每月出勤、遲到、請假、加班報表一鍵匯出 Excel，方便計薪。</p></div><div class="card"><div class="num">06</div><h3>異常提醒</h3><p>忘記打卡、遲到早退自動提醒，及時補登。</p></div></div>
-</div></section>
-
-<section class="alt"><div class="wrap">
+<section class="alt"><div class="wrap"><div class="show">
+<div class="txt"><span class="tagline tag-s">智能排班</span><h3>設好人力需求，<br>整月班表自動排</h3><p>設定每一診最少需要幾個人，系統依員工可做的崗位、休診日和已核准的請假，自動排出整個月的班表，再微調就好。</p><ul class='check'><li>早午晚診分開排</li><li>工時規定排班當下就提醒</li></ul></div>
+<img class="shot" src="img/att-auto.webp" alt="智能排班設定畫面" width="1200" height="801" loading="lazy" decoding="async">
+</div><div class="show rev">
+<div class="txt"><span class="tagline tag-s">手機打卡</span><h3>手機掃 QR 打卡，<br>拍照轉傳也打不了</h3><p>櫃台平板顯示打卡 QR，每 60 秒換一張。員工用自己的手機掃描、點名字就完成。不用買打卡鐘，也不用裝 App。</p><ul class='check'><li>QR 定時更換，防止代打卡</li><li>可開啟自拍存證</li></ul></div>
+<img class="shot bare" src="img/att-qr.webp" alt="櫃台平板上的打卡 QR 與員工手機打卡畫面" width="1400" height="682" loading="lazy" decoding="async">
+</div><div class="center" style="margin:-40px 0 96px"><a class="btn btn-line" href="https://line.me/R/ti/p/@336appfx" target="_blank" rel="noopener"><img class="av" src="img/oliver.svg" alt="" width="32" height="32">想看實際操作？問 Oliver</a></div><div class="show">
+<div class="txt"><span class="tagline tag-s">薪資計算</span><h3>每月薪資自動算，<br>計算過程看得到</h3><p>加班、請假、勞健保、勞退提繳自動計算，點開每個人就看到計算式。工資清冊、轉帳清冊一鍵匯出。</p><ul class='check'><li>加班先核定再計薪</li><li>特休、加退保也幫你盯</li></ul></div>
+<img class="shot" src="img/att-pay.webp" alt="每月薪資明細表" width="1200" height="801" loading="lazy" decoding="async">
+</div><div class="show rev">
+<div class="txt"><span class="tagline tag-s">員工自助</span><h3>員工用手機<br>看自己的班表與薪資單</h3><p>員工登入後只看得到自己的資料：本月班表、出勤紀錄、薪資單，薪資單可以線上簽收。主管不用再一個一個回答「我這個月排幾天？」</p></div>
+<img class="shot bare" src="img/att-phones.webp" alt="員工手機上的我的班表、我的出勤、我的薪資單" width="1200" height="819" loading="lazy" decoding="async">
+</div></div></section>
+<section id="how"><div class="wrap center">
 <p class="eyebrow">HOW IT WORKS</p>
-<h2>三步驟開始使用</h2>
-<div class="grid3" style="margin-top:32px"><div class="card"><div class="num">STEP 1</div><h3>建立人員與班別</h3><p>設定員工資料與診所的早中晚診班別。</p></div><div class="card"><div class="num">STEP 2</div><h3>排班</h3><p>在線上排好本月班表，員工手機上就能看到。</p></div><div class="card"><div class="num">STEP 3</div><h3>開始打卡</h3><p>員工手機打卡，月底一鍵匯出報表計薪。</p></div></div>
+<h2>三步驟，看看 Oli 適不適合你的診所</h2>
+<p class="sub">不用填表單、不用留電話，在 LINE 上跟 Oliver 說一聲就好。</p>
+<div class="steps" style="text-align:left">
+<div class="step"><div class="n">01</div><h3>加 LINE 問 Oliver</h3><p>告訴我們診所科別、人數，和現在最困擾的事。</p></div>
+<div class="step"><div class="n">02</div><h3>20 分鐘線上展示</h3><p>用你的診所情境實際操作給你看，有問題當場問。</p></div>
+<div class="step"><div class="n">03</div><h3>專人協助導入</h3><p>資料建檔、人員設定，我們陪你一起上手。</p></div>
+</div>
 </div></section>
-
-<section id="faq"><div class="wrap" style="max-width:820px">
-<p class="eyebrow">FAQ</p>
-<h2>考勤系統常見問題</h2>
-<div style="margin-top:32px"><details><summary>員工需要下載 App 嗎？</summary><p>不需要，用手機瀏覽器就能打卡，也可以加到手機主畫面當作 App 使用。</p></details><details><summary>可以防止代打卡嗎？</summary><p>可以設定只能在診所位置範圍內打卡，並記錄打卡裝置。</p></details><details><summary>排班可以依早中晚診排嗎？</summary><p>可以，系統依診所常見的診次設計，支援輪班與調班。</p></details><details><summary>出勤資料可以給會計計薪嗎？</summary><p>可以，每月出勤與加班報表可一鍵匯出 Excel 給會計或記帳士。</p></details></div>
-<p style="margin-top:28px">也想管理物料系統？看看 <a href="materials.html">Oli 物料系統 →</a></p>
-</div></section>
-<section class="final"><div class="wrap"><h2>想看看實際操作畫面？</h2><p class="sub" style="margin:0 auto 32px">加 LINE 告訴 Oliver 你的診所科別和人數，我們安排線上展示。</p><div class="cta-row"><a class="btn btn-primary" href="https://line.me/R/ti/p/@336appfx" target="_blank" rel="noopener">加 LINE 預約展示</a></div></div></section>
+<section><div class="wrap"><div class="oliver">
+<img class="av-lg" src="img/oliver.svg" alt="Oliver，Olimedi 的行動管家" width="200" height="200" loading="lazy">
+<div><span class="bubble">嗨！我是 Oliver 👋</span><h2>想看看用在你的診所會怎樣？</h2><p>Oliver 是 Olimedi 的行動管家。想看系統實際操作、想知道適不適合你的診所，加 LINE 跟他說一聲，我們安排免費線上展示。</p><a class="btn btn-line" href="https://line.me/R/ti/p/@336appfx" target="_blank" rel="noopener"><img class="av" src="img/oliver.svg" alt="" width="32" height="32">加入 Oliver 好友</a></div>
+</div></div></section>
+<section style="padding-top:0"><div class="wrap center"><p>也在找物料管理？<a class="more" href="materials.html">看 Oli 物料管理 →</a></p></div></section>
 
 </main>
 <footer><div class="wrap">
 <div><a class="brand" href="index.html"><svg viewBox="0 0 120 120" width="30" height="30" aria-hidden="true"><path d="M88.3 26.3 A44 44 0 1 1 60 16" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><path d="M91 25 C 94 13, 103 6, 115 5 C 114 17, 105 25, 91 25 Z" fill="#7BB661"/><rect x="50" y="38" width="20" height="44" rx="6" fill="#F2A541"/><rect x="38" y="50" width="44" height="20" rx="6" fill="#F2A541"/></svg><b><span>Oli</span>medi</b></a><p style="margin:12px 0 0">把時間還給自己。診所日常作業的好夥伴。</p></div>
-<nav><a href="materials.html">Oli 物料系統</a><a href="attendance.html">Oli 考勤系統</a><a href="https://line.me/R/ti/p/@336appfx" target="_blank" rel="noopener">LINE：Oliver 行動管家</a></nav>
-<div style="width:100%;border-top:1px solid rgba(247,245,238,.14);padding-top:20px">© 2026 Olimedi 奧里醫療資訊</div>
+<nav><a href="attendance.html">Oli 考勤系統</a><a href="materials.html">Oli 物料系統</a><a href="https://line.me/R/ti/p/@336appfx" target="_blank" rel="noopener">LINE：Oliver 行動管家</a></nav>
+<div style="width:100%;border-top:1px solid rgba(247,245,238,.14);padding-top:20px">© 2026 Olimedi 奧里醫療資訊　·　網站中的系統畫面皆為示範資料</div>
 </div></footer>
+<a class="fab" href="https://line.me/R/ti/p/@336appfx" target="_blank" rel="noopener" aria-label="加 LINE 問 Oliver"><span class="tip">有問題？問 Oliver 👋</span><span class="pic"><img src="img/oliver.svg" alt="Oliver" width="64" height="64"><span class="dot"></span></span></a>
 </body>
 </html>
