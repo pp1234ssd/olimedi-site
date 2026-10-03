@@ -23,7 +23,7 @@ def page(path,title,desc,body,active,schema,og="/img/og.jpg"):
     return _abs(_page(path,title,desc,body,active,schema,og))
 def _page(path,title,desc,body,active,schema,og="/img/og.jpg"):
     url=SITE+"/"+("" if path=="index.html" else path)
-    nav="".join(f'<a href="{h}"{" aria-current=\"page\"" if h==active else ""}>{t}</a>' for h,t in [("attendance.html","考勤管理系統"),("materials.html","庫存管理系統"),("blog/","診所管理專欄"),("index.html#how","預約展示")])
+    nav="".join(f'<a href="{h}"{" aria-current=\"page\"" if h==active else ""}>{t}</a>' for h,t in [("attendance.html","考勤管理系統"),("materials.html","庫存管理系統"),("blog/","診所管理專欄"),("templates.html","免費範本")])
     ld="\n".join(f'<script type="application/ld+json">{json.dumps(s,ensure_ascii=False)}</script>' for s in schema)
     return f'''<!doctype html>
 <html lang="zh-Hant-TW">
@@ -94,6 +94,29 @@ def faq_ld(items): return {"@context":"https://schema.org","@type":"FAQPage","ma
 faq=[("Oli 系統適合哪些診所？","專為醫療院所設計，特別適合還在用紙本、Excel 或 LINE 群組處理排班、打卡與耗材的團隊。"),
 ("需要買設備或安裝軟體嗎？","不用。電腦、平板、手機打開瀏覽器就能用，打卡也不用買打卡鐘。"),
 ("可以先看看實際畫面嗎？","可以。加入 LINE 官方帳號跟 Oliver 說一聲，我們安排約 20 分鐘的免費線上展示。")]
+TEMPLATES=[
+ ("排班表","醫療院所早午晚診排班表","早、午、晚診分開排，下拉選單填班；自動算出每人上班天數、總時數、晚診次數，每天每一診人數不足會標紅色，超過工時上限會提醒。",["依年月自動產生日期與星期","每診最少人數檢查","每人工時與晚診次數統計"],"排班考勤"),
+ ("盤點表","耗材盤點與安全庫存表","依每日用量與廠商交貨天數算出安全庫存與建議叫貨量，自動做 ABC 分級並建議盤點頻率；另有效期追蹤與盤點差異紀錄。",["安全庫存與叫貨提醒","ABC 分級與盤點頻率","效期追蹤與盤點紀錄"],"庫存管理"),
+ ("特休表","特休天數與餘額計算表","輸入到職日與月薪，依勞基法第 38 條自動算出年資、本年度特休天數、年度起訖日、剩餘天數與未休工資試算，年度快結束會提醒排休。",["依年資自動計算特休天數","剩餘天數與未休工資試算","特休天數對照表"],"排班考勤"),
+]
+def tpl_cards(compact=False):
+    out=""
+    for kw,name,desc,feats,cat in TEMPLATES:
+        fl="" if compact else "<ul class='check' style='margin:0 0 20px'>"+"".join(f"<li style='font-size:15px'>{f}</li>" for f in feats)+"</ul>"
+        out+=f'''<div class="post-card" style="cursor:default"><span class="tagline {"tag-g" if cat=="庫存管理" else "tag-s"}" style="align-self:flex-start">免費 Excel 範本</span><h2>{name}</h2><p>{desc}</p>{fl}<a class="btn btn-line" style="font-size:15px;padding:12px 18px" href="{LINE}" target="_blank" rel="noopener">{AV}加 LINE 輸入「{kw}」領取</a></div>'''
+    return f'<div class="post-list">{out}</div>'
+tbody=f'''<section class="hero" style="padding-bottom:24px"><div class="wrap" style="display:block">
+<p class="crumb"><a href="index.html">首頁</a> / 免費範本</p>
+<p class="eyebrow">FREE TEMPLATES</p><h1>醫療院所免費 Excel 範本</h1>
+<p class="lead">排班、盤點、特休，先用 Excel 把基本功做好。加入 Oliver 的 LINE，輸入關鍵字就會自動傳給你，完全免費。</p>
+</div></section>
+<section style="padding-top:24px"><div class="wrap">{tpl_cards()}
+<div class="note" style="margin-top:32px;font-size:15px">已經是 Oliver 的好友？直接在 LINE 聊天室輸入「排班表」「盤點表」或「特休表」即可。範本為一般管理工具，不構成法律意見；法規相關計算請以主管機關最新公告為準。</div>
+</div></section>
+{OLIVER_BAND("Excel 管得很累？問 Oliver","範本能幫你把基本功做好；如果想讓排班、打卡、特休、庫存自動算好，加 LINE 跟 Oliver 說一聲，我們安排約 20 分鐘免費線上展示。")}'''
+open("templates.html","w").write(page("templates.html","醫療院所免費 Excel 範本｜排班表、盤點表、特休計算表｜Olimedi 奧里","免費下載醫療院所 Excel 範本：早午晚診排班表、耗材盤點與安全庫存表、特休天數與餘額計算表。加入 Olimedi LINE 輸入關鍵字即可領取。",tbody,"templates.html",[]))
+
+
 home=f'''
 <section class="hero"><div class="wrap">
 <div>
@@ -134,6 +157,7 @@ home=f'''
 </div>
 </div></section>
 
+<section><div class="wrap"><div class="center"><p class="eyebrow">FREE TEMPLATES</p><h2>先免費拿走這 3 個範本</h2><p class="sub">排班表、盤點表、特休計算表，加 Oliver 的 LINE 輸入關鍵字就會自動傳給你。</p></div>{tpl_cards(compact=True)}</div></section>
 {STEPS}
 {OLIVER_BAND()}
 
@@ -223,6 +247,7 @@ priv=f'''<section><div class="wrap" style="max-width:820px">
 <p>本聲明如有修訂，將公布於本頁面。</p>
 <div class="cta-row" style="margin-top:32px">{cta("透過 LINE 聯絡我們")}</div>
 </div></section>'''
+
 open("privacy.html","w").write(page("privacy.html","隱私權聲明｜Olimedi 奧里醫療資訊","Olimedi 奧里醫療資訊網站隱私權聲明。",priv,"",[]))
 print("privacy")
 
@@ -247,6 +272,7 @@ def post(slug,title,desc,cat,intro,body,sources=None,related=(),date="2026-10-03
 <p class="intro">{intro}</p>
 {body}
 <div class="post-cta"><img src="/img/oliver.svg" alt="Oliver" width="96" height="96" loading="lazy"><div><h3>想讓這些事自動完成？</h3><p>Oli 系統專為診所設計。加 LINE 問 Oliver，我們安排約 20 分鐘免費線上展示。</p>{cta("問 Oliver・預約免費展示")}</div></div>
+<p class="note" style="margin-top:20px">📥 免費下載：<a href="/templates.html">排班表、耗材盤點表、特休計算表 Excel 範本</a></p>
 {src}
 {rel}
 </article>'''
@@ -274,7 +300,7 @@ idx=f'''<section class="hero" style="padding-bottom:24px"><div class="wrap" styl
 open("blog/index.html","w").write(page("blog/","診所管理專欄｜排班、加班費、耗材管理實用整理｜Olimedi 奧里","Olimedi 診所管理專欄：診所排班、員工加班費計算、耗材與庫存管理等實用文章。",idx,"blog/",[{"@context":"https://schema.org","@type":"Blog","name":"Olimedi 診所管理專欄","url":SITE+"/blog/"}]))
 
 # sitemap
-urls=[("",1.0),("attendance.html",0.9),("materials.html",0.9),("blog/",0.8)]+[(f"blog/{p[0]}.html",0.7) for p in POSTS]+[("privacy.html",0.3)]
+urls=[("",1.0),("attendance.html",0.9),("materials.html",0.9),("blog/",0.8),("templates.html",0.8)]+[(f"blog/{p[0]}.html",0.7) for p in POSTS]+[("privacy.html",0.3)]
 open("sitemap.xml","w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+"".join(f"  <url><loc>{SITE}/{u}</loc><lastmod>2026-10-03</lastmod><priority>{p}</priority></url>\n" for u,p in urls)+"</urlset>\n")
 print("blog",len(POSTS))
 

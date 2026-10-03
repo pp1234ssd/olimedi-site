@@ -22,3 +22,4 @@
 - Threads 短版（口語、200 字內）
 
 - 執行 build.py 時會自動為新文章產生社群分享圖 `img/og/<slug>.jpg`（需 playwright/Chromium），一併 commit。
+- 文章主題與免費範本相關時（排班、盤點、特休），可在內文自然提到「免費範本」並連到 /templates.html（版型已在文末自動加入範本連結）。
