@@ -53,6 +53,13 @@
 <nav><a href="/attendance.html">Oli 考勤管理系統</a><a href="/materials.html">Oli 庫存管理系統</a><a href="/blog/">診所管理專欄</a><a href="https://line.me/R/ti/p/@336appfx" target="_blank" rel="noopener">LINE：Oliver 行動管家</a><a href="https://www.facebook.com/profile.php?id=61595186213662" target="_blank" rel="noopener">Facebook 粉絲專頁</a><a href="https://www.instagram.com/olimedi2026/" target="_blank" rel="noopener">Instagram</a><a href="https://www.threads.com/@olimedi2026" target="_blank" rel="noopener">Threads</a></nav>
 <div style="width:100%;border-top:1px solid rgba(247,245,238,.14);padding-top:20px;line-height:1.9">© 2026 Olimedi 奧里醫療資訊 版權所有　·　<a href="/privacy.html">隱私權聲明</a><br>本網站之文字、圖片、系統畫面、Logo 及 Oliver 角色圖像，未經書面授權不得轉載、重製或使用。<br>網站中的系統畫面皆為示範資料，人名、診所、病歷號與廠商名稱均為虛構。系統之薪資、加班、勞健保與特休等計算結果僅供參考，實際仍以相關法令及主管機關公告為準。實際功能以展示及合約內容為準。LINE 為 LY Corporation 之商標。</div>
 </div></footer>
+<div class="qr-modal" id="qrModal" hidden><div class="qr-box"><button class="qr-close" type="button" aria-label="關閉" onclick="closeQR()">×</button><img src="/img/oliver.svg" alt="" width="64" height="64" class="qr-oliver"><h3>用手機掃描，加 Oliver 好友</h3><p>打開手機 LINE → 右上角「加入好友」→ 掃描 QR Code</p><img src="/img/line-qr.png" alt="Oliver LINE 官方帳號 QR Code" width="220" height="220" class="qr-img"><p class="qr-id">或在 LINE 搜尋 ID：<b>@336appfx</b></p><a class="qr-desktop" href="/line://ti/p/@336appfx">已安裝 LINE 電腦版？直接開啟</a></div></div>
+<script>
+(function(){var m=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);if(m)return;document.querySelectorAll('a[href^="https://line.me/"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var d=document.getElementById('qrModal');d.hidden=false;document.body.style.overflow='hidden';});});})();
+function closeQR(){var d=document.getElementById('qrModal');d.hidden=true;document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeQR();});
+document.addEventListener('click',function(e){if(e.target&&e.target.id==='qrModal')closeQR();});
+</script>
 <a class="fab" href="https://line.me/R/ti/p/@336appfx" target="_blank" rel="noopener" aria-label="加 LINE 問 Oliver"><span class="tip">有問題？問 Oliver 👋</span><span class="pic"><img src="/img/oliver.svg" alt="Oliver" width="64" height="64"><span class="dot"></span></span></a>
 </body>
 </html>
