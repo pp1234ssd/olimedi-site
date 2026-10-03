@@ -7,6 +7,8 @@ import json, os
 os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 LINE="https://line.me/R/ti/p/@336appfx"
 SITE="https://olimedi.com"
+import hashlib as _hl
+CSSV=_hl.md5(open("style.css","rb").read()).hexdigest()[:8]
 def logo(s=36,r="#2E7D5B"): return LOGO.format(s=s,r=r)
 AV='<img class="av" src="img/oliver.svg" alt="" width="32" height="32">'
 def cta(txt="問 Oliver・預約免費展示"): return f'<a class="btn btn-line" href="{LINE}" target="_blank" rel="noopener">{AV}{txt}</a>'
@@ -48,7 +50,7 @@ def _page(path,title,desc,body,active,schema,og="/img/og.jpg"):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v={CSSV}">
 {ld}
 </head>
 <body>
