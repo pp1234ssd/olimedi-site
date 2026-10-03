@@ -55,6 +55,7 @@ def _page(path,title,desc,body,active,schema):
 <header class="top"><div class="wrap">
 <a class="brand" href="index.html" aria-label="Olimedi 奧里醫療資訊 首頁">{logo()}<b><span>Oli</span>medi</b><small>奧里醫療資訊</small></a>
 <nav class="main">{nav}<a class="btn btn-line" href="{LINE}" target="_blank" rel="noopener">LINE 諮詢</a></nav>
+<details class="mnav"><summary aria-label="開啟選單"><span></span><span></span><span></span></summary><div class="mnav-panel">{nav}<a class="btn btn-line" href="{LINE}" target="_blank" rel="noopener">問 Oliver・LINE 諮詢</a></div></details>
 </div></header>
 <main>
 {body}
