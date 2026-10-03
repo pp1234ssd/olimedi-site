@@ -62,7 +62,7 @@ def _page(path,title,desc,body,active,schema,og="/img/og.jpg"):
 </main>
 <footer><div class="wrap">
 <div><a class="brand" href="index.html">{logo(30,"#fff")}<b><span>Oli</span>medi</b></a><p style="margin:12px 0 0">把時間還給自己，診所的瑣事交給 Oli。</p></div>
-<nav><a href="attendance.html">Oli 考勤管理系統</a><a href="materials.html">Oli 庫存管理系統</a><a href="blog/">診所管理專欄</a><a href="{LINE}" target="_blank" rel="noopener">LINE：Oliver 行動管家</a><a href="https://www.facebook.com/profile.php?id=61595186213662" target="_blank" rel="noopener">Facebook 粉絲專頁</a><a href="https://www.instagram.com/olimedi2026/" target="_blank" rel="noopener">Instagram</a></nav>
+<nav><a href="attendance.html">Oli 考勤管理系統</a><a href="materials.html">Oli 庫存管理系統</a><a href="blog/">診所管理專欄</a><a href="{LINE}" target="_blank" rel="noopener">LINE：Oliver 行動管家</a><a href="https://www.facebook.com/profile.php?id=61595186213662" target="_blank" rel="noopener">Facebook 粉絲專頁</a><a href="https://www.instagram.com/olimedi2026/" target="_blank" rel="noopener">Instagram</a><a href="https://www.threads.com/@olimedi2026" target="_blank" rel="noopener">Threads</a></nav>
 <div style="width:100%;border-top:1px solid rgba(247,245,238,.14);padding-top:20px;line-height:1.9">© 2026 Olimedi 奧里醫療資訊 版權所有　·　<a href="privacy.html">隱私權聲明</a><br>本網站之文字、圖片、系統畫面、Logo 及 Oliver 角色圖像，未經書面授權不得轉載、重製或使用。<br>網站中的系統畫面皆為示範資料，人名、診所、病歷號與廠商名稱均為虛構。系統之薪資、加班、勞健保與特休等計算結果僅供參考，實際仍以相關法令及主管機關公告為準。實際功能以展示及合約內容為準。LINE 為 LY Corporation 之商標。</div>
 </div></footer>
 <a class="fab" href="{LINE}" target="_blank" rel="noopener" aria-label="加 LINE 問 Oliver"><span class="tip">有問題？問 Oliver 👋</span><span class="pic"><img src="img/oliver.svg" alt="Oliver" width="64" height="64"><span class="dot"></span></span></a>
@@ -86,7 +86,7 @@ def OLIVER_BAND(h="有問題？問 Oliver 就好",p="Oliver 是 Olimedi 的行�
 <div><span class="bubble">嗨！我是 Oliver 👋</span><h2>{h}</h2><p>{p}</p>{cta("加入 Oliver 好友")}</div>
 </div></div></section>'''
 
-ORG={"@context":"https://schema.org","@type":"Organization","name":"Olimedi 奧里醫療資訊","alternateName":["奧里","Olimedi"],"url":SITE+"/","logo":SITE+"/favicon.svg","slogan":"把時間還給自己","sameAs":[LINE,"https://www.facebook.com/profile.php?id=61595186213662","https://www.instagram.com/olimedi2026/"]}
+ORG={"@context":"https://schema.org","@type":"Organization","name":"Olimedi 奧里醫療資訊","alternateName":["奧里","Olimedi"],"url":SITE+"/","logo":SITE+"/favicon.svg","slogan":"把時間還給自己","sameAs":[LINE,"https://www.facebook.com/profile.php?id=61595186213662","https://www.instagram.com/olimedi2026/","https://www.threads.com/@olimedi2026"]}
 def faq_html(items): return "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q,a in items)
 def faq_ld(items): return {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in items]}
 
