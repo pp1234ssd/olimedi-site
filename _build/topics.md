@@ -3,7 +3,7 @@
 - [x] 診所耗材管理怎麼做？從 Excel 到系統的 5 個步驟（clinic-supply-management）
 - [x] 診所排班表怎麼排？早午晚診排班的 6 個原則（clinic-shift-scheduling-tips）
 - [x] 診所員工加班費怎麼算？平日、休息日、國定假日一次看懂（clinic-overtime-pay-calculation）
-- [ ] 診所特休怎麼算？依年資天數一覽與未休工資｜排班考勤
+- [x] 診所特休怎麼算？依年資天數一覽與未休工資（clinic-annual-leave-calculation）
 - [ ] 診所庫存盤點怎麼做？ABC 分級盤點法｜庫存管理
 - [ ] 診所行政工作清單：每日、每週、每月該做的事｜診所經營
 - [ ] 醫材效期管理：避免耗材過期浪費的 4 個方法｜庫存管理
