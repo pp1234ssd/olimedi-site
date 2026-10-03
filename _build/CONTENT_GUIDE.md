@@ -20,3 +20,5 @@
 - FB 貼文（網站連結放第一個網址，LINE 連結放後面，3–5 個 hashtag）
 - IG 圖文短文（連結請放個人檔案）
 - Threads 短版（口語、200 字內）
+
+- 執行 build.py 時會自動為新文章產生社群分享圖 `img/og/<slug>.jpg`（需 playwright/Chromium），一併 commit。

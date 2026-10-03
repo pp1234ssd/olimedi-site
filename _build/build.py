@@ -19,9 +19,9 @@ import re as _re
 def _abs(html):
     html=_re.sub(r'(href|src)="(?!https?:|/|#|mailto:)([^"]*)"', r'\1="/\2"', html)
     return html.replace('href="/index.html#','href="/#').replace('href="/index.html"','href="/"')
-def page(path,title,desc,body,active,schema):
-    return _abs(_page(path,title,desc,body,active,schema))
-def _page(path,title,desc,body,active,schema):
+def page(path,title,desc,body,active,schema,og="/img/og.jpg"):
+    return _abs(_page(path,title,desc,body,active,schema,og))
+def _page(path,title,desc,body,active,schema,og="/img/og.jpg"):
     url=SITE+"/"+("" if path=="index.html" else path)
     nav="".join(f'<a href="{h}"{" aria-current=\"page\"" if h==active else ""}>{t}</a>' for h,t in [("attendance.html","考勤管理系統"),("materials.html","庫存管理系統"),("blog/","診所管理專欄"),("index.html#how","預約展示")])
     ld="\n".join(f'<script type="application/ld+json">{json.dumps(s,ensure_ascii=False)}</script>' for s in schema)
@@ -39,7 +39,7 @@ def _page(path,title,desc,body,active,schema):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{SITE}/img/og.jpg">
+<meta property="og:image" content="{SITE}{og}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_TW">
@@ -231,6 +231,7 @@ print("privacy")
 os.makedirs("blog",exist_ok=True)
 LAW="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0030001"
 POSTS=[]
+OG_JOBS=[]
 def post(slug,title,desc,cat,intro,body,sources=None,related=(),date="2026-10-03"):
     POSTS.append((slug,title,desc,cat,intro,date))
     src=""
@@ -249,9 +250,10 @@ def post(slug,title,desc,cat,intro,body,sources=None,related=(),date="2026-10-03
 {src}
 {rel}
 </article>'''
-    ld={"@context":"https://schema.org","@type":"BlogPosting","headline":title,"description":desc,"datePublished":date,"dateModified":date,"inLanguage":"zh-TW","mainEntityOfPage":f"{SITE}/blog/{slug}.html","image":f"{SITE}/img/og.jpg","author":{"@type":"Organization","name":"Olimedi 奧里醫療資訊"},"publisher":{"@type":"Organization","name":"Olimedi 奧里醫療資訊","logo":{"@type":"ImageObject","url":SITE+"/favicon.svg"}}}
+    ld={"@context":"https://schema.org","@type":"BlogPosting","headline":title,"description":desc,"datePublished":date,"dateModified":date,"inLanguage":"zh-TW","mainEntityOfPage":f"{SITE}/blog/{slug}.html","image":f"{SITE}/img/og/{slug}.jpg","author":{"@type":"Organization","name":"Olimedi 奧里醫療資訊"},"publisher":{"@type":"Organization","name":"Olimedi 奧里醫療資訊","logo":{"@type":"ImageObject","url":SITE+"/favicon.svg"}}}
     bc={"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":SITE+"/"},{"@type":"ListItem","position":2,"name":"診所管理專欄","item":SITE+"/blog/"},{"@type":"ListItem","position":3,"name":title,"item":f"{SITE}/blog/{slug}.html"}]}
-    open(f"blog/{slug}.html","w").write(page(f"blog/{slug}.html",f"{title}｜Olimedi 奧里",desc,html,"blog/",[ld,bc]))
+    OG_JOBS.append((slug,title,cat))
+    open(f"blog/{slug}.html","w").write(page(f"blog/{slug}.html",f"{title}｜Olimedi 奧里",desc,html,"blog/",[ld,bc],og=f"/img/og/{slug}.jpg"))
 
 import glob,json as _json
 _files=sorted(glob.glob("_build/posts/*.html"))
@@ -275,3 +277,12 @@ open("blog/index.html","w").write(page("blog/","診所管理專欄｜排班、�
 urls=[("",1.0),("attendance.html",0.9),("materials.html",0.9),("blog/",0.8)]+[(f"blog/{p[0]}.html",0.7) for p in POSTS]+[("privacy.html",0.3)]
 open("sitemap.xml","w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+"".join(f"  <url><loc>{SITE}/{u}</loc><lastmod>2026-10-03</lastmod><priority>{p}</priority></url>\n" for u,p in urls)+"</urlset>\n")
 print("blog",len(POSTS))
+
+# ---- 社群分享圖（只產生缺少的；要重做就刪掉 img/og/ 裡的檔案）----
+import sys as _sys
+_sys.path.insert(0,os.path.join(os.path.dirname(os.path.abspath(__file__))))
+import og as _og
+_jobs=[(_og.article_html(t,c),f"img/og/{s}.jpg") for s,t,c in OG_JOBS if not os.path.exists(f"img/og/{s}.jpg")]
+if not os.path.exists("img/og.jpg"): _jobs.append((_og.default_html(),"img/og.jpg"))
+os.makedirs("img/og",exist_ok=True)
+_og.render(_jobs); print("og images",len(_jobs))
