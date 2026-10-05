@@ -266,6 +266,15 @@ os.makedirs("blog",exist_ok=True)
 LAW="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0030001"
 POSTS=[]
 OG_JOBS=[]
+# ---- 專欄分類 ----
+CATS={
+ "排班考勤":("attendance","診所排班與考勤管理","排班、打卡、加班費、特休、請假與勞基法出勤規定的實用整理，適用各類醫療院所。","從排班表怎麼排、四週變形工時、加班費與特休怎麼算，到打卡與出勤紀錄保存，這裡整理診所人事行政最常遇到的問題與做法。","attendance.html","Oli 考勤管理系統","排班表"),
+ "庫存管理":("inventory","診所耗材與庫存管理","耗材叫貨、盤點、效期與批號追蹤、成本控制的實用整理，適用各類醫療院所。","從耗材清單怎麼建、ABC 分級盤點、效期與批號追蹤，到叫貨 SOP 與對帳，這裡整理診所庫存管理最常遇到的問題與做法。","materials.html","Oli 庫存管理系統","盤點表"),
+ "診所經營":("management","診所行政與經營","行政工作清單、月底結算、人事成本、數位化導入等診所日常經營整理，適用各類醫療院所。","從每日行政清單、月底結算檢查，到人事成本與要不要導入系統的判斷，這裡整理診所經營者最常問的問題。","templates.html","免費範本","特休表"),
+}
+def tagcls(c): return {"庫存管理":"tag-g","排班考勤":"tag-s"}.get(c,"tag-b")
+def catlink(c): return f"/blog/{CATS[c][0]}/" if c in CATS else "/blog/"
+
 def post(slug,title,desc,cat,intro,body,sources=None,related=(),date="2026-10-03"):
     POSTS.append((slug,title,desc,cat,intro,date))
     src=""
@@ -275,7 +284,7 @@ def post(slug,title,desc,cat,intro,body,sources=None,related=(),date="2026-10-03
     if related:
         rel='<div class="related"><p style="margin:0;color:var(--mute);font-size:14px">延伸閱讀</p>'+"".join(f'<a href="/blog/{s}.html">{t} →</a>' for s,t in related)+'</div>'
     html=f'''<article class="article">
-<p class="crumb"><a href="/">首頁</a> / <a href="/blog/">診所管理專欄</a> / {cat}</p>
+<p class="crumb"><a href="/">首頁</a> / <a href="/blog/">診所管理專欄</a> / <a href="{catlink(cat)}">{cat}</a></p>
 <h1>{title}</h1>
 <p class="meta">Olimedi 奧里醫療資訊　·　{int(date[:4])} 年 {int(date[5:7])} 月 {int(date[8:10])} 日</p>
 <p class="intro">{intro}</p>
@@ -286,7 +295,7 @@ def post(slug,title,desc,cat,intro,body,sources=None,related=(),date="2026-10-03
 {rel}
 </article>'''
     ld={"@context":"https://schema.org","@type":"BlogPosting","headline":title,"description":desc,"datePublished":date,"dateModified":date,"inLanguage":"zh-TW","mainEntityOfPage":f"{SITE}/blog/{slug}.html","image":f"{SITE}/img/og/{slug}.jpg","author":{"@type":"Organization","name":"Olimedi 奧里醫療資訊"},"publisher":{"@type":"Organization","name":"Olimedi 奧里醫療資訊","logo":{"@type":"ImageObject","url":SITE+"/favicon.svg"}}}
-    bc={"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":SITE+"/"},{"@type":"ListItem","position":2,"name":"診所管理專欄","item":SITE+"/blog/"},{"@type":"ListItem","position":3,"name":title,"item":f"{SITE}/blog/{slug}.html"}]}
+    bc={"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":SITE+"/"},{"@type":"ListItem","position":2,"name":"診所管理專欄","item":SITE+"/blog/"},{"@type":"ListItem","position":3,"name":cat,"item":SITE+catlink(cat)},{"@type":"ListItem","position":4,"name":title,"item":f"{SITE}/blog/{slug}.html"}]}
     OG_JOBS.append((slug,title,cat))
     open(f"blog/{slug}.html","w").write(page(f"blog/{slug}.html",f"{title}｜Olimedi 奧里",desc,html,"blog/",[ld,bc],og=f"/img/og/{slug}.jpg"))
 
@@ -298,18 +307,41 @@ for _f in _files:
 for _m in _meta.values():
     post(_m["slug"],_m["title"],_m["desc"],_m["cat"],_m["intro"],_m["body"],sources=[tuple(x) for x in _m.get("sources",[])],related=tuple((s,_meta[s]["title"]) for s in _m.get("related",[]) if s in _meta),date=_m.get("date","2026-10-03"))
 # blog index
-cards="".join(f'<a class="post-card" href="/blog/{s}.html"><span class="tagline {"tag-g" if c=="庫存管理" else "tag-s"}" style="align-self:flex-start">{c}</span><h2>{t}</h2><p>{d}</p><span class="go">閱讀全文 →</span></a>' for s,t,d,c,i,dt in sorted(POSTS,key=lambda p:p[5],reverse=True))
+def _cards(plist): return "".join(f'<a class="post-card" href="/blog/{s}.html"><span class="tagline {tagcls(c)}" style="align-self:flex-start">{c}</span><h2>{t}</h2><p>{d}</p><span class="go">閱讀全文 →</span></a>' for s,t,d,c,i,dt in sorted(plist,key=lambda p:p[5],reverse=True))
+def _tabs(active=None):
+    items=[("/blog/","全部",active is None)]+[(f"/blog/{v[0]}/",k,active==k) for k,v in CATS.items()]
+    return '<nav class="cat-tabs" aria-label="分類">'+"".join(f'<a href="{h}"{" aria-current=\"page\"" if a else ""}>{t}</a>' for h,t,a in items)+'</nav>'
+cards=_cards(POSTS)
+_unused="".join(f'<a class="post-card" href="/blog/{s}.html"><span class="tagline {"tag-g" if c=="庫存管理" else "tag-s"}" style="align-self:flex-start">{c}</span><h2>{t}</h2><p>{d}</p><span class="go">閱讀全文 →</span></a>' for s,t,d,c,i,dt in sorted(POSTS,key=lambda p:p[5],reverse=True))
 idx=f'''<section class="hero" style="padding-bottom:24px"><div class="wrap" style="display:block">
 <p class="crumb"><a href="/">首頁</a> / 診所管理專欄</p>
 <p class="eyebrow">BLOG</p><h1>診所管理專欄</h1>
 <p class="lead">排班、加班、耗材、叫貨……西醫、牙醫、中醫、復健、醫美等各類醫療院所都適用的日常管理實用整理。</p>
+{_tabs()}
 </div></section>
 <section style="padding-top:24px"><div class="wrap"><div class="post-list">{cards}</div></div></section>
 {OLIVER_BAND("看完還有問題？問 Oliver")}'''
 open("blog/index.html","w").write(page("blog/","診所管理專欄｜排班、加班費、耗材管理實用整理｜Olimedi 奧里","Olimedi 診所管理專欄：診所排班、員工加班費計算、耗材與庫存管理等實用文章。",idx,"blog/",[{"@context":"https://schema.org","@type":"Blog","name":"Olimedi 診所管理專欄","url":SITE+"/blog/"}]))
 
+# category pages
+for _c,(_cs,_h1,_desc,_lead,_plink,_pname,_kw) in CATS.items():
+    _pl=[p for p in POSTS if p[3]==_c]
+    os.makedirs(f"blog/{_cs}",exist_ok=True)
+    _body=f'''<section class="hero" style="padding-bottom:24px"><div class="wrap" style="display:block">
+<p class="crumb"><a href="/">首頁</a> / <a href="/blog/">診所管理專欄</a> / {_c}</p>
+<p class="eyebrow">{_c}</p><h1>{_h1}</h1>
+<p class="lead">{_lead}</p>
+{_tabs(_c)}
+</div></section>
+<section style="padding-top:24px"><div class="wrap"><div class="post-list">{_cards(_pl) or '<p class="lead">文章陸續上線中。</p>'}</div>
+<p class="note" style="margin-top:28px">想直接用系統處理這些事？看看 <a href="/{_plink}">{_pname}</a>，或加 LINE 輸入「{_kw}」先領免費 Excel 範本。</p></div></section>
+{OLIVER_BAND("看完還有問題？問 Oliver")}'''
+    _bc={"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":SITE+"/"},{"@type":"ListItem","position":2,"name":"診所管理專欄","item":SITE+"/blog/"},{"@type":"ListItem","position":3,"name":_c,"item":f"{SITE}/blog/{_cs}/"}]}
+    _cp={"@context":"https://schema.org","@type":"CollectionPage","name":_h1,"url":f"{SITE}/blog/{_cs}/","description":_desc,"isPartOf":{"@type":"Blog","name":"Olimedi 診所管理專欄","url":SITE+"/blog/"}}
+    open(f"blog/{_cs}/index.html","w").write(page(f"blog/{_cs}/",f"{_h1}｜診所管理專欄｜Olimedi 奧里",_desc,_body,"blog/",[_cp,_bc]))
+
 # sitemap
-urls=[("",1.0),("attendance.html",0.9),("materials.html",0.9),("blog/",0.8),("templates.html",0.8)]+[(f"blog/{p[0]}.html",0.7,p[5]) for p in POSTS]+[("privacy.html",0.3)]
+urls=[("",1.0),("attendance.html",0.9),("materials.html",0.9),("blog/",0.8),("templates.html",0.8)]+[(f"blog/{v[0]}/",0.7,max([p[5] for p in POSTS if p[3]==k],default="2026-10-05")) for k,v in CATS.items()]+[(f"blog/{p[0]}.html",0.7,p[5]) for p in POSTS]+[("privacy.html",0.3)]
 open("sitemap.xml","w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+"".join(f"  <url><loc>{SITE}/{x[0]}</loc><lastmod>{x[2] if len(x)>2 else '2026-10-03'}</lastmod><priority>{x[1]}</priority></url>\n" for x in urls)+"</urlset>\n")
 print("blog",len(POSTS))
 
