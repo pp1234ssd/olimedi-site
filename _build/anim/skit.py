@@ -55,14 +55,20 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-
 .counter:after{{content:"";position:absolute;left:80px;right:80px;top:120px;height:16px;border-radius:8px;background:#E6EEE9}}
 .sign{{position:absolute;left:80px;top:240px;padding:18px 36px;border-radius:999px;background:#fff;border:3px solid #D5DED9;font-weight:700;font-size:40px;color:var(--g)}}
 .staff{{position:absolute;left:150px;top:720px;width:420px;height:560px;transform-origin:50% 100%;animation:breathe 2.4s ease-in-out infinite}}
-.staff .face{{position:absolute;left:110px;top:60px;width:200px;height:220px;border-radius:50%;background:#FBE3D0}}
-.staff .hair{{position:absolute;left:96px;top:30px;width:228px;height:130px;border-radius:120px 120px 30px 30px;background:#3B2A26}}
-.staff .eye{{position:absolute;top:150px;width:22px;height:30px;border-radius:50%;background:#2B2B2B;animation:blink 3.1s steps(1) infinite}}
-.staff .eye.l{{left:166px}}.staff .eye.r{{left:234px}}
-.staff .mouth{{position:absolute;left:196px;top:214px;width:28px;height:10px;border-radius:30px 30px 0 0;background:#C9746A;animation:smile .1s linear 7.2s forwards}}
-.staff .body{{position:absolute;left:80px;top:270px;width:260px;height:300px;border-radius:120px 120px 20px 20px;background:#8FC4B5}}
-.staff .collar{{position:absolute;left:170px;top:262px;width:80px;height:40px;background:#fff;clip-path:polygon(0 0,100% 0,50% 100%)}}
-.staff .arm{{position:absolute;left:300px;top:330px;width:70px;height:220px;border-radius:40px;background:#8FC4B5;transform-origin:35px 20px;transform:rotate(-20deg);animation:scratch 1.2s ease-in-out .4s 2}}
+.staff .face{{position:absolute;left:100px;top:70px;width:220px;height:210px;border-radius:50%;background:#FBE3D0}}
+.staff .hair{{position:absolute;left:90px;top:40px;width:240px;height:130px;border-radius:130px 130px 40px 40px;background:#4A3530}}
+.staff .bun{{position:absolute;left:170px;top:10px;width:80px;height:70px;border-radius:50%;background:#4A3530}}
+.staff .bun:after{{content:"";position:absolute;left:14px;top:12px;width:24px;height:14px;border-radius:50%;background:#fff;opacity:.15}}
+.staff .eye{{position:absolute;top:150px;width:30px;height:40px;border-radius:50%;background:#2B2B2B;animation:blink 3.1s steps(1) infinite}}
+.staff .eye:after{{content:"";position:absolute;left:6px;top:7px;width:11px;height:11px;border-radius:50%;background:#fff}}
+.staff .eye.l{{left:160px}}.staff .eye.r{{left:232px}}
+.staff .cheek{{position:absolute;top:200px;width:40px;height:22px;border-radius:50%;background:#F7B3A3;opacity:.7}}
+.staff .cheek.l{{left:128px}}.staff .cheek.r{{left:254px}}
+.staff .mouth{{position:absolute;left:198px;top:222px;width:24px;height:10px;border-radius:30px 30px 0 0;background:#C9746A;animation:smile .1s linear 7.2s forwards}}
+.staff .body{{position:absolute;left:90px;top:272px;width:240px;height:290px;border-radius:120px 120px 30px 30px;background:#8FC4B5}}
+.staff .collar{{position:absolute;left:176px;top:266px;width:68px;height:34px;background:#fff;clip-path:polygon(0 0,100% 0,50% 100%)}}
+.staff .arm{{position:absolute;left:300px;top:340px;width:60px;height:170px;border-radius:40px;background:#8FC4B5;transform-origin:30px 20px;transform:rotate(-20deg);animation:scratch 1.2s ease-in-out .4s 2}}
+.staff .arm:after{{content:"";position:absolute;left:8px;bottom:-14px;width:44px;height:44px;border-radius:50%;background:#FBE3D0}}
 .paper{{position:absolute;left:330px;top:470px;width:130px;height:160px;background:#fff;border:3px solid #D5DED9;transform:rotate(12deg)}}
 .paper i{{display:block;height:8px;margin:18px 14px 0;background:#D5DED9}}
 .box{{position:absolute;left:320px;top:480px;width:150px;height:110px;background:#E8DCC8;border:3px solid #C9B99A;border-radius:8px;transform:rotate(8deg);display:flex;align-items:center;justify-content:center}}
@@ -83,7 +89,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-
 .b2{{left:470px;top:520px;--ox:90%;--tx:520px;background:var(--g);color:#fff;animation:pop .35s cubic-bezier(.2,1.4,.4,1) 3.8s forwards, fade .3s linear 6.6s forwards}}
 .b2:after{{border-top-color:var(--g)}}
 .b3{{left:120px;top:470px;--tx:140px;animation:pop .35s cubic-bezier(.2,1.4,.4,1) 7.4s forwards, fade .3s linear 9.8s forwards}}
-.tablet{{position:absolute;left:300px;top:1270px;width:480px;height:330px;border-radius:28px;background:#17332B;padding:18px;opacity:0;transform:translateY(60px);animation:rise .5s ease-out 5.2s forwards}}
+.tablet{{position:absolute;left:110px;top:1290px;width:480px;height:330px;border-radius:28px;background:#17332B;padding:18px;opacity:0;transform:translateY(60px);animation:rise .5s ease-out 5.2s forwards}}
 .screen{{width:100%;height:100%;border-radius:16px;background:#fff;padding:22px}}
 .screen.grid{{display:grid;grid-template-columns:repeat(7,1fr);grid-auto-rows:34px;gap:8px}}
 .screen.grid b{{display:block;border-radius:8px;background:#E6EEE9;transform:scaleX(0);transform-origin:left;animation:fill .25s ease-out forwards}}
@@ -106,7 +112,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-
 @keyframes breathe{{0%,100%{{transform:scaleY(1)}}50%{{transform:scaleY(1.015)}}}}
 @keyframes blink{{0%,92%,100%{{transform:scaleY(1)}}95%{{transform:scaleY(.1)}}}}
 @keyframes scratch{{0%,100%{{transform:rotate(-20deg)}}50%{{transform:rotate(-38deg)}}}}
-@keyframes smile{{to{{border-radius:0 0 30px 30px;height:16px;width:44px;left:188px}}}}
+@keyframes smile{{to{{border-radius:0 0 30px 30px;height:16px;width:40px;left:190px}}}}
 @keyframes slide{{to{{left:600px}}}}
 @keyframes bob{{0%,100%{{transform:translateY(0) rotate(0)}}50%{{transform:translateY(-16px) rotate(-2deg)}}}}
 @keyframes oblink{{0%,90%,100%{{transform:scaleY(1)}}93%{{transform:scaleY(.12)}}}}
@@ -119,7 +125,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-
 @keyframes rowin{{to{{opacity:1;transform:translateX(0)}}}}
 </style></head><body><div class="stage">
 <div class="wall"></div><div class="sign">{esc(spec.get("scene","Oli 診所・櫃台"))}</div><div class="counter"></div>
-<div class="staff"><div class="hair"></div><div class="face"></div><div class="eye l"></div><div class="eye r"></div><div class="mouth"></div><div class="body"></div><div class="collar"></div><div class="arm"></div>{PROPS.get(spec.get("prop","paper"),"")}</div>
+<div class="staff"><div class="bun"></div><div class="hair"></div><div class="face"></div><div class="eye l"></div><div class="eye r"></div><div class="cheek l"></div><div class="cheek r"></div><div class="mouth"></div><div class="body"></div><div class="collar"></div><div class="arm"></div>{PROPS.get(spec.get("prop","paper"),"")}</div>
 <div class="bubble b1">{esc(spec["staff_line"])}</div>
 <div class="oli">{oliver.svg("wave",420,"p-wave")}{oliver.svg("tablet",420,"p-tablet")}{oliver.svg("thumb",420,"p-thumb")}</div>
 <div class="bubble b2">{esc(spec["oliver_line"])}</div>
