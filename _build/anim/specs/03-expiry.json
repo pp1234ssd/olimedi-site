@@ -1,0 +1,1 @@
+{"scene":"Oli 診所・倉庫","staff_line":"這盒又過期了…\n整盒只能丟掉","prop":"box","oliver_line":"效期我幫你盯著，\n30 天前就會提醒。","screen":{"type":"list","rows":[["印模材 2 盒","已過期","bad"],["麻醉劑 5 支","28 天內到期","warn"],["手套 M 10 盒","正常","ok"],["縫線 3 盒","正常","ok"]]},"relief_line":"先到期的先用，\n不會再整盒丟了。","caption":"效期自動標色 → 先到期先用","end_title":"耗材過期\n不再整盒丟掉","keyword":"盤點表","product":"Oli 庫存管理系統"}
