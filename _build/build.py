@@ -309,8 +309,8 @@ idx=f'''<section class="hero" style="padding-bottom:24px"><div class="wrap" styl
 open("blog/index.html","w").write(page("blog/","診所管理專欄｜排班、加班費、耗材管理實用整理｜Olimedi 奧里","Olimedi 診所管理專欄：診所排班、員工加班費計算、耗材與庫存管理等實用文章。",idx,"blog/",[{"@context":"https://schema.org","@type":"Blog","name":"Olimedi 診所管理專欄","url":SITE+"/blog/"}]))
 
 # sitemap
-urls=[("",1.0),("attendance.html",0.9),("materials.html",0.9),("blog/",0.8),("templates.html",0.8)]+[(f"blog/{p[0]}.html",0.7) for p in POSTS]+[("privacy.html",0.3)]
-open("sitemap.xml","w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+"".join(f"  <url><loc>{SITE}/{u}</loc><lastmod>2026-10-03</lastmod><priority>{p}</priority></url>\n" for u,p in urls)+"</urlset>\n")
+urls=[("",1.0),("attendance.html",0.9),("materials.html",0.9),("blog/",0.8),("templates.html",0.8)]+[(f"blog/{p[0]}.html",0.7,p[5]) for p in POSTS]+[("privacy.html",0.3)]
+open("sitemap.xml","w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+"".join(f"  <url><loc>{SITE}/{x[0]}</loc><lastmod>{x[2] if len(x)>2 else '2026-10-03'}</lastmod><priority>{x[1]}</priority></url>\n" for x in urls)+"</urlset>\n")
 print("blog",len(POSTS))
 
 # ---- 社群分享圖（只產生缺少的；要重做就刪掉 img/og/ 裡的檔案）----
