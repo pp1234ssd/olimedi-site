@@ -76,8 +76,8 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-
 .clock{{position:absolute;left:340px;top:470px;width:120px;height:120px;border-radius:50%;background:#fff;border:6px solid #17332B}}
 .clock b,.clock u{{position:absolute;left:50%;top:50%;background:#17332B;transform-origin:0 50%}}
 .clock b{{width:38px;height:6px;transform:rotate(-60deg)}}.clock u{{width:50px;height:4px;transform:rotate(30deg)}}
-.oli{{position:absolute;left:1180px;top:820px;width:420px;transform-origin:50% 100%;animation:slide .9s cubic-bezier(.2,.9,.3,1) 2.6s forwards}}
-.oli svg{{position:absolute;left:0;top:0;width:420px;height:auto;opacity:0}}
+.oli{{position:absolute;left:1180px;top:850px;width:300px;transform-origin:50% 100%;animation:slide .9s cubic-bezier(.2,.9,.3,1) 2.6s forwards}}
+.oli svg{{position:absolute;left:0;top:0;width:300px;height:auto;opacity:0}}
 .oli svg.p-wave{{animation:show .01s linear 2.6s forwards, hide .01s linear 5.1s forwards, bob 1.4s ease-in-out 3.5s 2}}
 .oli svg.p-tablet{{animation:show .01s linear 5.11s forwards, hide .01s linear 7.3s forwards}}
 .oli svg.p-thumb{{animation:show .01s linear 7.31s forwards, bob 1.4s ease-in-out 7.4s infinite}}
@@ -86,7 +86,7 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-
 .bubble{{position:absolute;padding:28px 40px;background:#fff;border-radius:40px;font-size:52px;font-weight:700;line-height:1.3;box-shadow:0 10px 30px rgba(23,51,43,.12);opacity:0;transform:scale(.6);transform-origin:var(--ox,20%) 100%}}
 .bubble:after{{content:"";position:absolute;bottom:-22px;left:var(--tx,60px);border:22px solid transparent;border-top-color:#fff;border-bottom:0}}
 .b1{{left:120px;top:470px;--tx:140px;animation:pop .35s cubic-bezier(.2,1.4,.4,1) .6s forwards, fade .3s linear 3.6s forwards}}
-.b2{{left:470px;top:520px;--ox:90%;--tx:520px;background:var(--g);color:#fff;animation:pop .35s cubic-bezier(.2,1.4,.4,1) 3.8s forwards, fade .3s linear 6.6s forwards}}
+.b2{{left:470px;top:640px;--ox:90%;--tx:520px;background:var(--g);color:#fff;animation:pop .35s cubic-bezier(.2,1.4,.4,1) 3.8s forwards, fade .3s linear 6.6s forwards}}
 .b2:after{{border-top-color:var(--g)}}
 .b3{{left:120px;top:470px;--tx:140px;animation:pop .35s cubic-bezier(.2,1.4,.4,1) 7.4s forwards, fade .3s linear 9.8s forwards}}
 .tablet{{position:absolute;left:110px;top:1290px;width:480px;height:330px;border-radius:28px;background:#17332B;padding:18px;opacity:0;transform:translateY(60px);animation:rise .5s ease-out 5.2s forwards}}
@@ -108,12 +108,12 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-
 .end h1{{font-size:88px;font-weight:900;line-height:1.2;text-align:center;padding:0 60px}}
 .end p{{font-size:44px;font-weight:700;background:#fff;color:var(--g);padding:20px 44px;border-radius:999px}}
 .end small{{font-size:32px;opacity:.85}}
-.end .oe{{width:300px;opacity:0;transform:translateY(40px);animation:rise .6s ease-out 10.8s forwards}}
+.end .oe{{width:240px;opacity:0;transform:translateY(40px);animation:rise .6s ease-out 10.8s forwards}}
 @keyframes breathe{{0%,100%{{transform:scaleY(1)}}50%{{transform:scaleY(1.015)}}}}
 @keyframes blink{{0%,92%,100%{{transform:scaleY(1)}}95%{{transform:scaleY(.1)}}}}
 @keyframes scratch{{0%,100%{{transform:rotate(-20deg)}}50%{{transform:rotate(-38deg)}}}}
 @keyframes smile{{to{{border-radius:0 0 30px 30px;height:16px;width:40px;left:190px}}}}
-@keyframes slide{{to{{left:600px}}}}
+@keyframes slide{{to{{left:660px}}}}
 @keyframes bob{{0%,100%{{transform:translateY(0) rotate(0)}}50%{{transform:translateY(-16px) rotate(-2deg)}}}}
 @keyframes oblink{{0%,90%,100%{{transform:scaleY(1)}}93%{{transform:scaleY(.12)}}}}
 @keyframes glint{{0%{{stroke:#F2A541}}30%{{stroke:#fff}}100%{{stroke:#F2A541}}}}
@@ -127,13 +127,13 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-
 <div class="wall"></div><div class="sign">{esc(spec.get("scene","Oli 診所・櫃台"))}</div><div class="counter"></div>
 <div class="staff"><div class="bun"></div><div class="hair"></div><div class="face"></div><div class="eye l"></div><div class="eye r"></div><div class="cheek l"></div><div class="cheek r"></div><div class="mouth"></div><div class="body"></div><div class="collar"></div><div class="arm"></div>{PROPS.get(spec.get("prop","paper"),"")}</div>
 <div class="bubble b1">{esc(spec["staff_line"])}</div>
-<div class="oli">{oliver.svg("wave",420,"p-wave")}{oliver.svg("tablet",420,"p-tablet")}{oliver.svg("thumb",420,"p-thumb")}</div>
+<div class="oli">{oliver.svg("wave",300,"p-wave")}{oliver.svg("tablet",300,"p-tablet")}{oliver.svg("thumb",300,"p-thumb")}</div>
 <div class="bubble b2">{esc(spec["oliver_line"])}</div>
 <div class="tablet">{screen_html(spec.get("screen") or dict(type="grid"))}</div>
 <div class="bubble b3">{esc(spec["relief_line"])}</div>
 <div class="cap">{esc(spec.get("caption",""))}</div>
 <div class="brand">{esc(spec.get("product","Oli 考勤管理系統"))}・olimedi.com</div>
-<div class="end">{oliver.svg("thumb",300,"oe")}<h1>{esc(spec["end_title"])}</h1><p>LINE 搜尋 @336appfx 輸入「{esc(spec.get("keyword","Demo"))}」</p><small>{esc(spec.get("product","Oli 考勤管理系統"))}・olimedi.com</small></div>
+<div class="end">{oliver.svg("thumb",240,"oe")}<h1>{esc(spec["end_title"])}</h1><p>LINE 搜尋 @336appfx 輸入「{esc(spec.get("keyword","Demo"))}」</p><small>{esc(spec.get("product","Oli 考勤管理系統"))}・olimedi.com</small></div>
 </div></body></html>'''
 
 def render(spec, out, dur=13.0, workdir=None):
