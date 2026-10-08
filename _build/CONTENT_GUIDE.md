@@ -18,7 +18,8 @@
 ## 每次完成後要回報給 Jim 的內容
 - 文章標題與網址 https://olimedi.com/blog/<slug>.html
 - FB 貼文（網站連結放第一個網址，LINE 連結放後面，3–5 個 hashtag）
-- IG 圖文短文（連結請放個人檔案）
+- IG Reels（IG 固定用 Reels 發文）：每篇文章用 `python3 _build/anim/reel.py <spec.json> <out.mp4>` 產生約 25 秒、9:16 的動態知識短片（hook 抓痛點 → 日曆／重點 → 情境對比 → 數字試算 → 提醒 → 結尾卡）。spec 放 `_build/anim/specs/reel-NN-<slug>.json`，mp4 不 commit，用 SendUserFile 傳給 Jim，並在 `_build/video-log.md` 記一筆。
+  另附：Reels 說明文字（第一行抓痛點、條列重點、提醒連結在個人檔案、5–8 個 hashtag）、封面標題、建議在 IG App 內加的音樂風格。
 - Threads 短版（口語、200 字內）
 
 - 執行 build.py 時會自動為新文章產生社群分享圖 `img/og/<slug>.jpg`（需 playwright/Chromium），一併 commit。
