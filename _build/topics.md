@@ -6,7 +6,7 @@
 - [x] 診所特休怎麼算？依年資天數一覽與未休工資（clinic-annual-leave-calculation）
 - [x] 診所庫存盤點怎麼做？ABC 分級盤點法（clinic-inventory-abc-stocktaking）
 ## 最優先（10/8 發，搭配 10/9–10/11 國慶連假）
-- [ ] 診所連假、國定假日要放假嗎？補假、出勤加班費與排班一次看懂｜排班考勤（目標字：診所 國定假日 放假、連假 出勤 加班費、補假 排班；內文要連到 clinic-overtime-pay-calculation、clinic-shift-scheduling-tips 與排班表範本）
+- [x] 診所連假、國定假日要放假嗎？補假、出勤加班費與排班一次看懂｜排班考勤（目標字：診所 國定假日 放假、連假 出勤 加班費、補假 排班；內文要連到 clinic-overtime-pay-calculation、clinic-shift-scheduling-tips 與排班表範本）（clinic-national-holiday-leave-pay）
 
 ## 優先：「診所排班」主題群（2026-10 起連續寫，彼此互連，每篇都連到 clinic-shift-scheduling-tips 與排班表範本 templates.html）
 - [x] 診所排班表 Excel 範本怎麼用？早午晚診一週排班實例｜排班考勤（目標字：診所排班表、排班表 Excel、排班表範本）（clinic-shift-schedule-excel-template）
