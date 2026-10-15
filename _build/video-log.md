@@ -5,3 +5,4 @@
 5｜國慶連假：10/9 補假不是人人都有（Reels 知識短片 reel.py）｜2026-10-08｜待發 IG Reels / FB Reels
 2｜手機掃 QR 打卡（Oliver 情境劇）｜2026-10-11｜待發
 6｜四週變形工時：長班 10 小時要先開會（Reels 知識短片 reel.py）｜2026-10-12｜待發 IG Reels / FB Reels
+7｜連續上班最多幾天：原則不超過 6 天（Reels 知識短片 reel.py）｜2026-10-15｜待發 IG Reels / FB Reels
