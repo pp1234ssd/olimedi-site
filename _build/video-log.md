@@ -7,3 +7,4 @@
 6｜四週變形工時：長班 10 小時要先開會（Reels 知識短片 reel.py）｜2026-10-12｜待發 IG Reels / FB Reels
 7｜連續上班最多幾天：原則不超過 6 天（Reels 知識短片 reel.py）｜2026-10-15｜待發 IG Reels / FB Reels
 5｜休息日加班費怎麼算（Oliver 情境劇）｜2026-10-18｜待發
+8｜兼職多上 2 小時算不算加班：部分工時排班（Reels 知識短片 reel.py）｜2026-10-19｜待發 IG Reels / FB Reels
