@@ -10,3 +10,4 @@
 8｜兼職多上 2 小時算不算加班：部分工時排班（Reels 知識短片 reel.py）｜2026-10-19｜待發 IG Reels / FB Reels
 9｜說好換班卻變曠職：調班紀錄怎麼留（Reels 知識短片 reel.py）｜2026-10-22｜待發 IG Reels / FB Reels
 10｜颱風假診所要開嗎：沒來不算曠職、出勤要通勤協助（Reels 知識短片 reel.py）｜2026-10-23｜待發 IG Reels / FB Reels
+6｜掃醫材條碼入庫（Oliver 情境劇）｜2026-10-25｜待發
