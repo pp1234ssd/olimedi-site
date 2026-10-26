@@ -182,7 +182,7 @@ def build_html(sp):
     comp = f'''<div class="q" style="animation:{a("popin",.4,s+0.15)}">{esc(cp["q"])}</div>{card("a",cp["a"],"fromL",s+0.6)}{card("b",cp["b"],"fromR",s+2.4)}'''
     # ---- numbers
     s = T["numbers"][0]
-    rows = "".join(f'<div class="nrow" style="animation:{a("sin",.4,s+0.9+i*1.0,"ease-out")}"><div class="k">{esc(k)}</div><div class="v">{roller(v.replace(" 元",""),s+1.0+i*1.0)}<span class="unit">元</span></div></div>' for i, (k, v) in enumerate(nm["rows"][:3]))
+    rows = "".join(f'<div class="nrow" style="animation:{a("sin",.4,s+0.9+i*1.0,"ease-out")}"><div class="k">{esc(k)}</div><div class="v">{roller(r[1].replace(" 元",""),s+1.0+i*1.0)}<span class="unit">{esc(r[2] if len(r) > 2 else nm.get("unit","元"))}</span></div></div>' for i, r in enumerate(nm["rows"][:3]) for k in [r[0]])
     nums = f'''<div class="h2" style="animation:{a("popin",.4,s+0.15)}">{esc(nm["title"])}</div><div class="tab" style="animation:{a("rise",.6,s+0.4)}"><div class="scr">{rows}</div></div>
 <div class="small" style="animation:fadein .4s ease-out {s+3.0:.2f}s 1 both">{esc(nm.get("note",""))}</div>
 <div class="oli-n" style="animation:{a("rise",.6,s+2.6)}"><div style="animation:bob 1.2s ease-in-out {s+3.2:.2f}s infinite">{oliver.svg("thumb",300)}</div></div>'''
