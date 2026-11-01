@@ -1,0 +1,1 @@
+{"scene":"Oli 診所・辦公室","staff_line":"打卡請假加班分開記，\n月底對帳對到半夜…","prop":"clock","oliver_line":"同一個系統記，\n異常先列出來處理。","screen":{"type":"list","rows":[["忘打卡 10/14","待補卡","warn"],["加班 10/20 2h","待核定","warn"],["請假 10/22","已核定","ok"],["異常都清掉","可以算薪水","ok"]]},"relief_line":"異常清掉就能算，\n不用熬夜對帳了。","caption":"一起記 → 待處理異常 → 算薪水","end_title":"月底算薪水\n不用熬到半夜","keyword":"Demo","product":"Oli 考勤管理系統"}
