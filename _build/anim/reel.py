@@ -6,7 +6,7 @@
 
 spec 欄位（全部字串可用 \\n 換行）：
   hook     {"top":"小標", "big":"大標（2 行內，每行 ≤ 8 字）"}            0–3.4s  抓痛點
-  calendar {"title":"…", "days":[["10","六","國慶日"],…3 格], "focus":1, "mark":"?", "mark_on":0, "note":"…"}  3.4–8s
+  calendar {"title":"…", "days":[["10","六","國慶日"],…3 格], "focus":1, "mark":"?", "mark_on":0, "note":"…", "prefix":"週（選填，日期上方前綴）"}  3.4–8s
   compare  {"q":"…", "a":{"tag","big","sub","stamp"}, "b":{"tag","big","sub","stamp"}}               8–14s
   numbers  {"title":"…", "rows":[["情境","+1,200 元"],…2 列], "note":"…"}                             14–19s
   warn     {"big":"…", "sub":"…"}                                                                     19–21.6s
@@ -170,7 +170,7 @@ def build_html(sp):
         foc = " focus" if i == c.get("focus", 1) else ""
         ring = f'<svg class="ring" viewBox="0 0 340 340"><path d="M170 18 C 300 20, 330 140, 300 240 C 270 330, 90 340, 40 250 C 0 170, 40 40, 190 30" style="animation:draw .7s ease-out {s+1.6:.2f}s 1 forwards"/></svg>' if foc else ""
         qm = f'<div class="qm" style="left:80px;animation:{a("popin",.35,s+2.4)}, wob .6s ease-in-out {s+2.8:.2f}s 3">{esc(c.get("mark","?"))}</div>' if i == c.get("mark_on", 0) else ""
-        days += f'<div class="day{foc}" style="animation:{a("flip",.6,s+0.4+i*0.22)}"><div class="hd">週{esc(wd)}</div><div class="n">{esc(n)}</div><div class="lb">{esc(lb)}</div>{ring}{qm}</div>'
+        days += f'<div class="day{foc}" style="animation:{a("flip",.6,s+0.4+i*0.22)}"><div class="hd">{esc(c.get("prefix","週"))}{esc(wd)}</div><div class="n">{esc(n)}</div><div class="lb">{esc(lb)}</div>{ring}{qm}</div>'
     cal = f'''<div class="h2" style="animation:{a("popin",.4,s+0.15)}">{esc(c["title"])}</div><div class="cal">{days}</div>
 <div class="note" style="animation:{a("popin",.4,s+2.0)}"><mark>{esc(c["note"])}</mark></div>
 <div class="peek" style="animation:{a("rise",.6,s+2.6)}">{oliver.svg("point",300)}</div>'''
