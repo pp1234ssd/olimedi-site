@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-Hant-TW"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Olimedi 現代版首頁預覽</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--g:#2E7D5B;--g2:#1F5F45;--leaf:#7BB661;--sun:#F2A541;--ink:#0F1F1A;--ink2:#17332B;--mute:#5B6F67;--bg:#F6F8F6;--card:#fff;--line:rgba(23,51,43,.08);--glow:#9EE2B6}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans TC','Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink2);line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+/* nav */
+.nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(14px);background:rgba(246,248,246,.75);border-bottom:1px solid var(--line)}
+.nav .wrap{height:68px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Plus Jakarta Sans';font-weight:800;font-size:22px}
+.brand small{font-family:'Noto Sans TC';font-weight:500;font-size:12px;color:var(--mute);margin-left:4px}
+.nav nav{display:flex;gap:28px;font-size:15px;font-weight:500}
+.nav nav a{opacity:.8}.nav nav a:hover{opacity:1}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font-weight:700;font-size:15px;transition:.2s}
+.btn-primary{background:var(--ink);color:#fff}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 30px rgba(15,31,26,.25)}
+.btn-line{background:#06C755;color:#fff;box-shadow:0 10px 26px rgba(6,199,85,.3)}
+.btn-ghost{border:1.5px solid rgba(23,51,43,.2)}
+.btn img{width:26px;height:26px;border-radius:50%}
+/* hero */
+.hero{position:relative;padding:96px 0 40px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto;height:120%;background:radial-gradient(60% 50% at 30% 30%,rgba(158,226,182,.55),transparent 70%),radial-gradient(40% 40% at 80% 20%,rgba(242,165,65,.28),transparent 70%);z-index:-1;filter:blur(20px)}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 6px;font-size:13px;font-weight:600;color:var(--mute);box-shadow:0 4px 14px rgba(23,51,43,.06);margin-bottom:22px}
+.pill b{background:var(--g);color:#fff;border-radius:999px;padding:3px 10px;font-size:12px}
+h1{font-size:clamp(36px,4.6vw,58px);line-height:1.12;font-weight:900;letter-spacing:-.01em;margin-bottom:20px}
+h1 .hl{background:linear-gradient(120deg,var(--g),#4CA57C);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:19px;color:var(--mute);max-width:32em;margin-bottom:30px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.stats{display:flex;gap:28px;margin-top:38px;padding-top:26px;border-top:1px solid var(--line)}
+.stats div b{display:block;font-family:'Plus Jakarta Sans';font-size:28px;font-weight:800;color:var(--ink)}
+.stats div span{font-size:13px;color:var(--mute)}
+/* device stack */
+.stage{position:relative;height:560px}
+.win{position:absolute;background:#fff;border-radius:18px;box-shadow:0 30px 80px rgba(15,31,26,.18),0 2px 0 rgba(255,255,255,.6) inset;border:1px solid var(--line);overflow:hidden}
+.win .bar{height:34px;background:#F2F5F3;display:flex;align-items:center;gap:6px;padding:0 14px;border-bottom:1px solid var(--line)}
+.win .bar i{width:9px;height:9px;border-radius:50%;background:#D6DED9}
+.win img{display:block;width:100%}
+.w1{left:0;top:30px;width:78%;animation:float 7s ease-in-out infinite}
+.w2{right:0;top:0;width:38%;border-radius:28px;border:6px solid var(--ink);box-shadow:0 30px 70px rgba(15,31,26,.3);animation:float 6s ease-in-out 1s infinite}
+.w2 img{width:100%}
+.chip{position:absolute;background:#fff;border-radius:14px;padding:12px 16px;box-shadow:0 16px 40px rgba(15,31,26,.14);font-size:14px;font-weight:700;display:flex;align-items:center;gap:10px;animation:float 5s ease-in-out .5s infinite}
+.chip i{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;color:#fff;font-style:normal;font-size:15px}
+.c1{left:-10px;bottom:120px}.c1 i{background:var(--g)}
+.c2{right:28%;bottom:40px}.c2 i{background:var(--sun)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+/* logos / trust */
+.trustbar{padding:28px 0 8px;text-align:center;color:var(--mute);font-size:14px}
+.trustbar span{display:inline-block;margin:0 14px;padding:6px 14px;border-radius:999px;background:#fff;border:1px solid var(--line)}
+/* sections */
+section{padding:96px 0}
+.eyebrow{font-size:13px;letter-spacing:.2em;font-weight:700;color:var(--g);margin-bottom:12px}
+h2{font-size:clamp(30px,4vw,46px);line-height:1.2;font-weight:900;letter-spacing:-.01em;margin-bottom:14px}
+.sub{color:var(--mute);font-size:18px;max-width:40em;margin-bottom:44px}
+/* product tabs */
+.tabs{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px;margin-bottom:36px;box-shadow:0 6px 20px rgba(23,51,43,.06)}
+.tabs button{border:0;background:transparent;font:inherit;font-weight:700;font-size:15px;padding:10px 22px;border-radius:999px;cursor:pointer;color:var(--mute)}
+.tabs button.on{background:var(--ink);color:#fff}
+.panel{display:none}.panel.on{display:block}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.b{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px;position:relative;overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.8) inset}
+.b h3{font-size:22px;margin:8px 0 8px}
+.b p{color:var(--mute);font-size:15px}
+.b .ic{width:44px;height:44px;border-radius:13px;background:#E7F3EC;color:var(--g);display:grid;place-items:center;font-weight:800;font-family:'Plus Jakarta Sans';font-size:17px}
+.b img{display:block;width:100%;border-radius:14px;border:1px solid var(--line);margin-top:20px;box-shadow:0 14px 34px rgba(15,31,26,.1)}
+.b.s6{grid-column:span 6}.b.s4{grid-column:span 4}.b.s8{grid-column:span 8}.b.s12{grid-column:span 12}
+.b.dark{background:var(--ink);color:#fff}.b.dark p{color:#B7C8C0}.b.dark .ic{background:rgba(255,255,255,.12);color:#fff}
+.b.green{background:linear-gradient(140deg,var(--g),var(--g2));color:#fff}.b.green p{color:#DDEBE3}.b.green .ic{background:rgba(255,255,255,.18);color:#fff}
+.kpi{font-family:'Plus Jakarta Sans';font-weight:800;font-size:54px;line-height:1;margin:16px 0 6px}
+/* how */
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.how .b .n{font-family:'Plus Jakarta Sans';font-weight:800;font-size:13px;letter-spacing:.2em;color:var(--sun)}
+/* oliver band */
+.band{background:var(--ink);color:#fff;border-radius:32px;padding:56px;display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center;position:relative;overflow:hidden}
+.band::after{content:"";position:absolute;right:-10%;top:-40%;width:50%;height:180%;background:radial-gradient(closest-side,rgba(123,182,97,.35),transparent);pointer-events:none}
+.band>img{width:150px;height:150px}.band .btn img{width:26px;height:26px}
+.band h2{color:#fff;margin-bottom:8px;font-size:34px}.band p{color:#B7C8C0;font-size:17px}
+footer{padding:48px 0 60px;color:var(--mute);font-size:13px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+@media(max-width:960px){.hero .wrap{grid-template-columns:1fr}.stage{height:420px}.nav nav{display:none}.b.s6,.b.s4,.b.s8{grid-column:span 12}.how{grid-template-columns:1fr}.band{grid-template-columns:1fr;text-align:center;justify-items:center}}
+</style></head><body>
+<header class="nav"><div class="wrap">
+<a class="brand" href="#"><svg width="34" height="34" viewBox="0 0 64 64"><circle cx="32" cy="34" r="22" fill="none" stroke="#2E7D5B" stroke-width="7"/><path d="M32 12c2-7 8-9 14-8-1 7-6 11-14 8z" fill="#7BB661"/><rect x="27" y="29" width="10" height="10" rx="3" fill="#F2A541"/></svg><span>Oli<span style="color:#2E7D5B">medi</span></span><small>奧里醫療資訊</small></a>
+<nav><a href="#att">考勤管理</a><a href="#inv">庫存管理</a><a href="#">開業代辦</a><a href="#">診所管理專欄</a><a href="#">免費範本</a></nav>
+<a class="btn btn-line" href="#"><img src="../img/oliver.svg" alt="">LINE 諮詢</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+<div>
+<div class="pill"><b>NEW</b> 2026 年起支援四週變形工時排班</div>
+<h1><span style="white-space:nowrap">診所的排班、打卡、</span><br><span style="white-space:nowrap">耗材與庫存，</span><br><span class="hl">一套就夠。</span></h1>
+<p class="lead">Oli 把排班、手機打卡、薪資、耗材效期與叫貨接在同一個系統裡。不用買設備、不用裝軟體，手機打開就能用。</p>
+<div class="cta"><a class="btn btn-line" href="#"><img src="../img/oliver.svg" alt="">問 Oliver・預約免費展示</a><a class="btn btn-ghost" href="#att">看看怎麼運作</a></div>
+<div class="stats"><div><b>20 分鐘</b><span>線上展示就能看懂</span></div><div><b>0 設備</b><span>手機 QR 打卡免打卡鐘</span></div><div><b>全科別</b><span>西醫、牙醫、中醫、醫美</span></div></div>
+</div>
+<div class="stage">
+<div class="win w1"><div class="bar"><i></i><i></i><i></i></div><img src="../img/att-hero.webp" alt="Oli 考勤管理系統畫面"></div>
+<div class="win w2"><img src="../img/mat-mobile.webp" alt="Oli 庫存管理系統手機畫面"></div>
+<div class="chip c1"><i>✓</i>11 月班表草稿已產生</div>
+<div class="chip c2"><i>!</i>3 項耗材 30 天內到期</div>
+</div>
+</div></section>
+
+<div class="trustbar"><span>醫療院所專用</span><span>瀏覽器開啟即用</span><span>資料加密備份</span><span>專人協助導入</span></div>
+
+<section id="att"><div class="wrap">
+<p class="eyebrow">PRODUCTS</p>
+<h2>兩套系統，可以一起用，也可以分開用</h2>
+<p class="sub">依診所現在最卡的地方先開始；之後要加另一套，資料直接接上。</p>
+<div class="tabs"><button class="on" data-t="a">Oli 考勤管理系統</button><button data-t="b">Oli 庫存管理系統</button></div>
+
+<div class="panel on" id="pa"><div class="bento">
+<div class="b s8"><div class="ic">01</div><h3>整月班表自動排</h3><p>設好每診最少人數與每人工時上限，系統先排出草稿，再微調。四週變形工時也能排。</p><img src="../img/att-auto.webp" alt=""></div>
+<div class="b s4 green"><div class="ic">02</div><h3>手機掃 QR 打卡</h3><p>櫃台平板顯示 QR，員工用自己手機掃碼。QR 定時更換，不用買打卡鐘。</p><div class="kpi">0 元</div><p>設備成本</p></div>
+<div class="b s4"><div class="ic">03</div><h3>請假、加班、特休</h3><p>員工手機申請，主管一鍵核准；特休依年資自動計算餘額。</p></div>
+<div class="b s8"><div class="ic">04</div><h3>月底薪資一鍵算好</h3><p>出勤、請假、加班與津貼自動帶入，異常先列成清單處理，不用再對三份表。</p><img src="../img/att-pay.webp" alt=""></div>
+</div></div>
+
+<div class="panel" id="pb"><div class="bento">
+<div class="b s8"><div class="ic">01</div><h3>庫存一眼看清</h3><p>依科別分類，安全庫存與 ABC 分級自動標示，該叫貨的品項排在最前面。</p><img src="../img/mat-dash.webp" alt=""></div>
+<div class="b s4 dark"><div class="ic">02</div><h3>效期、批號追蹤</h3><p>30 天內到期自動標色，先到期先用；高價醫材可依批號回溯。</p><div class="kpi">30 天</div><p>到期前提醒</p></div>
+<div class="b s4"><div class="ic">03</div><h3>手機掃碼入庫</h3><p>掃條碼帶出品名、批號、效期，新品項不用一字一字打。</p></div>
+<div class="b s8"><div class="ic">04</div><h3>叫貨與對帳</h3><p>依消耗量產生建議叫貨單，到貨驗收後自動更新庫存，月底跟廠商對帳不再漏。</p><img src="../img/mat-reorder.webp" alt=""></div>
+</div></div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+<p class="eyebrow">HOW IT WORKS</p>
+<h2>三步驟，看看 Oli 適不適合你的診所</h2>
+<p class="sub">不用填表單、不用留電話，在 LINE 上跟 Oliver 說一聲就好。</p>
+<div class="how">
+<div class="b"><div class="n">STEP 01</div><h3>加 LINE 問 Oliver</h3><p>告訴我們診所科別、人數，和現在最困擾的事。</p></div>
+<div class="b"><div class="n">STEP 02</div><h3>約 20 分鐘線上展示</h3><p>用你的診所情境實際操作給你看，有問題當場問。</p></div>
+<div class="b"><div class="n">STEP 03</div><h3>專人協助導入</h3><p>資料建檔、人員設定，我們陪你一起上手。</p></div>
+</div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap"><div class="band">
+<img src="../img/oliver.svg" alt="Oliver">
+<div><h2>有問題？問 Oliver 就好</h2><p>Oliver 是 Olimedi 的行動管家。想看系統實際操作、想知道適不適合你的診所，加 LINE 跟他說一聲。</p></div>
+<a class="btn btn-line" href="#"><img src="../img/oliver.svg" alt="">加入 Oliver 好友</a>
+</div></div></section>
+
+<footer><div class="wrap"><div>© 2026 Olimedi 奧里醫療資訊　·　把時間還給自己，診所的瑣事交給 Oli。</div><div>LINE　Facebook　Instagram　Threads</div></div></footer>
+<script>
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));document.getElementById('p'+b.dataset.t).classList.add('on');});
+</script>
+</body></html>
