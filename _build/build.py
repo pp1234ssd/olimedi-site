@@ -323,6 +323,11 @@ idx=f'''<section class="hero" style="padding-bottom:24px"><div class="wrap" styl
 {OLIVER_BAND("看完還有問題？問 Oliver")}'''
 open("blog/index.html","w").write(page("blog/","診所管理專欄｜排班、加班費、耗材管理實用整理｜Olimedi 奧里","Olimedi 診所管理專欄：診所排班、員工加班費計算、耗材與庫存管理等實用文章。",idx,"blog/",[{"@context":"https://schema.org","@type":"Blog","name":"Olimedi 診所管理專欄","url":SITE+"/blog/"}]))
 
+import sys as _sys0; _sys0.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
+# ================= services (preview: noindex, not in nav/sitemap yet)
+import services as _svc
+_svc.build(page,cta,OLIVER_BAND,LINE,SITE,faq_html,faq_ld,AV,preview=True)
+
 # category pages
 for _c,(_cs,_h1,_desc,_lead,_plink,_pname,_kw) in CATS.items():
     _pl=[p for p in POSTS if p[3]==_c]
