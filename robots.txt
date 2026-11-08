@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://olimedi.com/sitemap.xml
+Disallow: /downloads/oli-launch-checklist-k7m2q.xlsx

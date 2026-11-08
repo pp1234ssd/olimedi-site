@@ -94,7 +94,7 @@ def OLIVER_BAND(h="有問題？問 Oliver 就好",p="Oliver 是 Olimedi 的行�
 <img class="av-lg" src="img/oliver.svg" alt="Oliver，Olimedi 的行動管家" width="200" height="200" loading="lazy">
 <div><span class="bubble">嗨！我是 Oliver 👋</span><h2>{h}</h2><p>{p}</p>{cta("加入 Oliver 好友")}</div>
 </div></div></section>'''
-KW=[("排班表","早午晚診排班"),("盤點表","安全庫存與效期"),("特休表","特休天數試算"),("開業","13 步驟檢核表"),("Demo","預約展示")]
+KW=[("排班表","早午晚診排班"),("盤點表","安全庫存與效期"),("特休表","特休天數試算"),("Demo","預約展示")]
 def LINE_CTA(h="加 LINE，輸入一個字，<br>先把免費範本拿走",p="不用填表單、不用留電話。Oliver 會直接把 Excel 範本傳給你；想看系統再輸入「Demo」，我們安排 20 分鐘線上展示。",first="排班表",fname="醫療院所早午晚診排班表.xlsx",fdesc="下拉填班，每診人數自動檢查"):
     kws="".join(f"<span><b>{k}</b> {d}</span>" for k,d in KW)
     return f'''<section id="line"><div class="wrap"><div class="linebox">
@@ -134,14 +134,15 @@ TEMPLATES=[
  ("排班表","醫療院所早午晚診排班表","早、午、晚診分開排，下拉選單填班；自動算出每人上班天數、總時數、晚診次數，每天每一診人數不足會標紅色，超過工時上限會提醒。",["依年月自動產生日期與星期","每診最少人數檢查","每人工時與晚診次數統計"],"排班考勤"),
  ("盤點表","耗材盤點與安全庫存表","依每日用量與廠商交貨天數算出安全庫存與建議叫貨量，自動做 ABC 分級並建議盤點頻率；另有效期追蹤與盤點差異紀錄。",["安全庫存與叫貨提醒","ABC 分級與盤點頻率","效期追蹤與盤點紀錄"],"庫存管理"),
  ("特休表","特休天數與餘額計算表","輸入到職日與月薪，依勞基法第 38 條自動算出年資、本年度特休天數、年度起訖日、剩餘天數與未休工資試算，年度快結束會提醒排休。",["依年資自動計算特休天數","剩餘天數與未休工資試算","特休天數對照表"],"排班考勤"),
- ("開業","診所開業 13 步驟檢核表","13 個階段、76 個檢核項目，每項填負責人、期限與狀態，完成度與成熟度自動計算；另有開業代辦進度表與開幕前 14 天倒數表。各科別醫療院所適用。",["13 階段總覽與成熟度自評","76 項檢核明細可篩選","開幕前 14 天倒數（日期自動帶出）"],"診所經營"),
+ ("FORM","診所開業 13 步驟檢核表","13 個階段、76 個檢核項目，每項填負責人、期限與狀態，完成度與成熟度自動計算；另有開業代辦進度表與開幕前 14 天倒數表。各科別醫療院所適用。",["13 階段總覽與成熟度自評","76 項檢核明細可篩選","開幕前 14 天倒數（日期自動帶出）"],"診所經營"),
 ]
 def tagcls(c): return {"庫存管理":"tag-g","排班考勤":"tag-s"}.get(c,"tag-b")
 def tpl_cards(compact=False):
     out=""
     for kw,name,desc,feats,cat in TEMPLATES:
         fl="" if compact else "<ul class='check' style='margin:0 0 20px'>"+"".join(f"<li style='font-size:15px'>{f}</li>" for f in feats)+"</ul>"
-        out+=f'''<div class="post-card" style="cursor:default"><span class="tagline {tagcls(cat)}" style="align-self:flex-start">免費 Excel 範本</span><h2>{name}</h2><p>{desc}</p>{fl}<a class="btn btn-line" style="font-size:14px;padding:11px 16px" href="{LINE}" target="_blank" rel="noopener">{AV}加 LINE 輸入「{kw}」領取</a></div>'''
+        btn = f'<a class="btn btn-ink" style="font-size:14px;padding:11px 16px" href="launch-checklist.html">填 5 個欄位，免費領取 →</a>' if kw=="FORM" else f'<a class="btn btn-line" style="font-size:14px;padding:11px 16px" href="{LINE}" target="_blank" rel="noopener">{AV}加 LINE 輸入「{kw}」領取</a>'
+        out+=f'''<div class="post-card" style="cursor:default"><span class="tagline {tagcls(cat)}" style="align-self:flex-start">免費 Excel 範本</span><h2>{name}</h2><p>{desc}</p>{fl}{btn}</div>'''
     return f'<div class="post-list">{out}</div>'
 tbody=f'''<section class="hero simple" style="padding-bottom:24px"><div class="ring-bg"></div><div class="wrap">
 <p class="crumb"><a href="index.html">首頁</a> / 免費範本</p>
@@ -149,7 +150,7 @@ tbody=f'''<section class="hero simple" style="padding-bottom:24px"><div class="r
 <p class="lead">排班、盤點、特休，先用 Excel 把基本功做好。加入 Oliver 的 LINE，輸入關鍵字就會自動傳給你，完全免費。</p>
 </div></section>
 <section style="padding-top:24px"><div class="wrap">{tpl_cards()}
-<div class="note" style="margin-top:32px;font-size:15px">已經是 Oliver 的好友？直接在 LINE 聊天室輸入「排班表」「盤點表」「特休表」或「開業」即可。範本為一般管理工具，不構成法律意見；法規相關計算請以主管機關最新公告為準。</div>
+<div class="note" style="margin-top:32px;font-size:15px">已經是 Oliver 的好友？直接在 LINE 聊天室輸入「排班表」「盤點表」或「特休表」即可；開業檢核表請<a href="launch-checklist.html">填寫基本資料</a>後領取。範本為一般管理工具，不構成法律意見；法規相關計算請以主管機關最新公告為準。</div>
 </div></section>
 {LINE_CTA("Excel 管得很累？<br>先把範本拿走，再看要不要升級","範本能幫你把基本功做好；如果想讓排班、打卡、特休、庫存自動算好，輸入「Demo」，我們安排約 20 分鐘免費線上展示。")}'''
 open("templates.html","w").write(page("templates.html","醫療院所免費 Excel 範本｜排班表、盤點表、特休計算表｜Olimedi 奧里","免費下載醫療院所 Excel 範本：早午晚診排班表、耗材盤點與安全庫存表、特休天數與餘額計算表、診所開業 13 步驟檢核表。加入 Olimedi LINE 輸入關鍵字即可領取。",tbody,"templates.html",[]))
@@ -249,6 +250,34 @@ prod("materials.html","庫存管理系統",
  ["快缺貨自動提醒","效期先到先用","不用安裝 App"],("考勤管理系統","attendance.html"),
  [("10:30","到貨","掃碼入庫 18 項，2 分鐘","UDI 自動帶出品名、批號、效期。","mat-scan","#day",False),("12:10","午休","3 項耗材 30 天內到期","先到期先用，整盒過期不再發生。","mat-trace","#day",False),("14:00","治療前","洗牙套組一鍵領用","助理點一下，庫存自動扣。","mat-kits","#day",False),("週五","叫貨日","建議叫貨單已產生","依用量與交貨天數算好，勾選送出。","mat-reorder","#day",True)],
  ("今天 0 項缺貨","✓ 叫貨單已送出"),"b")
+
+
+# ================= 開業檢核表領取頁（表單）
+FORM_EMBED=""  # 建好 Google 表單後，把「嵌入 HTML」裡的 src 網址貼在這裡
+_form = (f'<iframe src="{FORM_EMBED}" width="100%" height="1180" frameborder="0" marginheight="0" marginwidth="0" title="開業檢核表領取表單" style="border-radius:18px;background:#fff">載入中…</iframe>' if FORM_EMBED
+  else f'''<div class="post-card" style="cursor:default"><h2 style="margin-top:0">表單準備中</h2><p>請先加 LINE 跟 Oliver 說「我要開業檢核表」，並留下：姓名／稱呼、預計開業區域、科別、聯絡電話或 LINE、方便聯繫的時間，我們會把檢核表傳給您並安排後續聯繫。</p>{cta("加 LINE 跟 Oliver 說")}</div>''')
+lc=f'''<section class="hero simple" style="padding-bottom:30px"><div class="ring-bg"></div><div class="wrap">
+<p class="crumb"><a href="index.html">首頁</a> / <a href="templates.html">免費範本</a> / 開業檢核表</p>
+<p class="eyebrow">FREE CHECKLIST</p><h1>診所開業 13 步驟檢核表</h1>
+<p class="lead" style="max-width:40em">13 個階段、76 個檢核項目，每項填負責人與期限就能追蹤進度；另附開業代辦進度表與開幕前 14 天倒數表。各科別醫療院所適用。留下 5 個基本資料，送出後立即顯示下載連結，我們也會在您方便的時間與您聯繫，聊聊開業規劃。</p>
+<div class="trust"><span>Excel 格式，公式自動計算</span><span>各科別適用</span><span>送出後立即下載</span></div>
+</div></section>
+<section style="padding-top:20px"><div class="wrap" style="max-width:860px">
+{_form}
+<p class="note" style="margin-top:24px">您提供的資料僅用於傳送檢核表、回覆詢問與安排開業諮詢，不會提供給無關第三人；詳見<a href="privacy.html">隱私權聲明</a>。檢核表為開業流程管理工具，不構成法律、稅務、建築、消防、放射、健保或醫療專業意見，實際辦理請以主管機關最新公告為準。</p>
+</div></section>
+<section class="alt"><div class="wrap">
+<div class="center" style="margin-bottom:40px"><p class="eyebrow">WHAT\'S INSIDE</p><h2>檢核表裡有什麼</h2></div>
+<div class="steps steps-4" style="text-align:left">
+<div class="step"><div class="n">01</div><h3>13 階段總覽</h3><p>開業策略到正式營運，每階段的關鍵產出、建議時程、負責人、狀態與成熟度自評；完成度自動計算。</p></div>
+<div class="step"><div class="n">02</div><h3>76 項檢核明細</h3><p>每個階段 5～7 個真的會出錯的點，逐項勾狀態、填負責人與期限，可篩選。</p></div>
+<div class="step"><div class="n">03</div><h3>開業代辦進度</h3><p>地點評估到健保特約 9 項申請，每項要準備的文件、送件日與完成日。</p></div>
+<div class="step"><div class="n">04</div><h3>開幕前 14 天倒數</h3><p>填開幕日，D-14 到 D+1 每天該做的事自動帶出日期。</p></div>
+</div>
+</div></section>
+<section style="padding-top:0"><div class="wrap center"><p>不想填表單？<a class="more" href="services.html">先看開業代辦服務 →</a>　或　{cta("直接加 LINE 問 Oliver")}</p></div></section>
+'''
+open("launch-checklist.html","w").write(page("launch-checklist.html","診所開業 13 步驟檢核表 免費領取｜Olimedi 奧里","免費領取診所開業 13 步驟檢核表（Excel）：13 階段、76 項檢核、開業代辦進度與開幕前 14 天倒數。留下基本資料即可下載，各科別醫療院所適用。",lc,"templates.html",[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":SITE+"/"},{"@type":"ListItem","position":2,"name":"免費範本","item":SITE+"/templates.html"},{"@type":"ListItem","position":3,"name":"開業檢核表","item":SITE+"/launch-checklist.html"}]}]))
 
 open("404.html","w").write(page("404.html","找不到頁面｜Olimedi 奧里","找不到這個頁面。",f'<section class="center"><div class="wrap"><h1>找不到這個頁面</h1><p class="sub">頁面可能已經移動。</p><div class="cta-row" style="justify-content:center"><a class="btn btn-ghost" href="index.html">回到首頁</a>{cta()}</div></div></section>',"",[]).replace('<link rel="canonical" href="https://olimedi.com/404.html">\n','<meta name="robots" content="noindex">\n'))
 print("built")
@@ -359,7 +388,7 @@ for _c,(_cs,_h1,_desc,_lead,_plink,_pname,_kw) in CATS.items():
     open(f"blog/{_cs}/index.html","w").write(page(f"blog/{_cs}/",f"{_h1}｜診所管理專欄｜Olimedi 奧里",_desc,_body,"blog/",[_cp,_bc]))
 
 # sitemap
-urls=[("",1.0),("attendance.html",0.9),("materials.html",0.9),("services.html",0.9,"2026-11-08"),("blog/",0.8),("templates.html",0.8)]+[(f"blog/{v[0]}/",0.7,max([p[5] for p in POSTS if p[3]==k],default="2026-10-05")) for k,v in CATS.items()]+[(f"blog/{p[0]}.html",0.7,p[5]) for p in POSTS]+[("privacy.html",0.3)]
+urls=[("",1.0),("attendance.html",0.9),("materials.html",0.9),("services.html",0.9,"2026-11-08"),("blog/",0.8),("templates.html",0.8),("launch-checklist.html",0.7,"2026-11-08")]+[(f"blog/{v[0]}/",0.7,max([p[5] for p in POSTS if p[3]==k],default="2026-10-05")) for k,v in CATS.items()]+[(f"blog/{p[0]}.html",0.7,p[5]) for p in POSTS]+[("privacy.html",0.3)]
 open("sitemap.xml","w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+"".join(f"  <url><loc>{SITE}/{x[0]}</loc><lastmod>{x[2] if len(x)>2 else '2026-10-03'}</lastmod><priority>{x[1]}</priority></url>\n" for x in urls)+"</urlset>\n")
 print("blog",len(POSTS))
 
