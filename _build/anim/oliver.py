@@ -17,7 +17,7 @@ POSES={
  "point": lambda: SHOES+BODY+ARM(200,550,20,"l")+ARM(446,530,-110,"r")+HEAD,
 }
 def svg(pose="stand",w=640,cls=""):
-    return f'<svg class="oliver {cls}" viewBox="100 40 440 680" width="{w}" height="{int(w*680/440)}" role="img" aria-label="Oliver">{POSES[pose]()}</svg>'
+    return f'<svg xmlns="http://www.w3.org/2000/svg" class="oliver {cls}" viewBox="100 40 440 680" width="{w}" height="{int(w*680/440)}" role="img" aria-label="Oliver">{POSES[pose]()}</svg>'
 if __name__=="__main__":
     import os
     os.makedirs("img/oliver",exist_ok=True)
