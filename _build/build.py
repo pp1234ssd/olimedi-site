@@ -134,12 +134,14 @@ TEMPLATES=[
  ("排班表","醫療院所早午晚診排班表","早、午、晚診分開排，下拉選單填班；自動算出每人上班天數、總時數、晚診次數，每天每一診人數不足會標紅色，超過工時上限會提醒。",["依年月自動產生日期與星期","每診最少人數檢查","每人工時與晚診次數統計"],"排班考勤"),
  ("盤點表","耗材盤點與安全庫存表","依每日用量與廠商交貨天數算出安全庫存與建議叫貨量，自動做 ABC 分級並建議盤點頻率；另有效期追蹤與盤點差異紀錄。",["安全庫存與叫貨提醒","ABC 分級與盤點頻率","效期追蹤與盤點紀錄"],"庫存管理"),
  ("特休表","特休天數與餘額計算表","輸入到職日與月薪，依勞基法第 38 條自動算出年資、本年度特休天數、年度起訖日、剩餘天數與未休工資試算，年度快結束會提醒排休。",["依年資自動計算特休天數","剩餘天數與未休工資試算","特休天數對照表"],"排班考勤"),
+ ("開業","診所開業 13 步驟檢核表","13 個階段、76 個檢核項目，每項填負責人、期限與狀態，完成度與成熟度自動計算；另有開業代辦進度表與開幕前 14 天倒數表。各科別醫療院所適用。",["13 階段總覽與成熟度自評","76 項檢核明細可篩選","開幕前 14 天倒數（日期自動帶出）"],"診所經營"),
 ]
+def tagcls(c): return {"庫存管理":"tag-g","排班考勤":"tag-s"}.get(c,"tag-b")
 def tpl_cards(compact=False):
     out=""
     for kw,name,desc,feats,cat in TEMPLATES:
         fl="" if compact else "<ul class='check' style='margin:0 0 20px'>"+"".join(f"<li style='font-size:15px'>{f}</li>" for f in feats)+"</ul>"
-        out+=f'''<div class="post-card" style="cursor:default"><span class="tagline {"tag-g" if cat=="庫存管理" else "tag-s"}" style="align-self:flex-start">免費 Excel 範本</span><h2>{name}</h2><p>{desc}</p>{fl}<a class="btn btn-line" style="font-size:14px;padding:11px 16px" href="{LINE}" target="_blank" rel="noopener">{AV}加 LINE 輸入「{kw}」領取</a></div>'''
+        out+=f'''<div class="post-card" style="cursor:default"><span class="tagline {tagcls(cat)}" style="align-self:flex-start">免費 Excel 範本</span><h2>{name}</h2><p>{desc}</p>{fl}<a class="btn btn-line" style="font-size:14px;padding:11px 16px" href="{LINE}" target="_blank" rel="noopener">{AV}加 LINE 輸入「{kw}」領取</a></div>'''
     return f'<div class="post-list">{out}</div>'
 tbody=f'''<section class="hero simple" style="padding-bottom:24px"><div class="ring-bg"></div><div class="wrap">
 <p class="crumb"><a href="index.html">首頁</a> / 免費範本</p>
@@ -147,10 +149,10 @@ tbody=f'''<section class="hero simple" style="padding-bottom:24px"><div class="r
 <p class="lead">排班、盤點、特休，先用 Excel 把基本功做好。加入 Oliver 的 LINE，輸入關鍵字就會自動傳給你，完全免費。</p>
 </div></section>
 <section style="padding-top:24px"><div class="wrap">{tpl_cards()}
-<div class="note" style="margin-top:32px;font-size:15px">已經是 Oliver 的好友？直接在 LINE 聊天室輸入「排班表」「盤點表」或「特休表」即可。範本為一般管理工具，不構成法律意見；法規相關計算請以主管機關最新公告為準。</div>
+<div class="note" style="margin-top:32px;font-size:15px">已經是 Oliver 的好友？直接在 LINE 聊天室輸入「排班表」「盤點表」「特休表」或「開業」即可。範本為一般管理工具，不構成法律意見；法規相關計算請以主管機關最新公告為準。</div>
 </div></section>
 {LINE_CTA("Excel 管得很累？<br>先把範本拿走，再看要不要升級","範本能幫你把基本功做好；如果想讓排班、打卡、特休、庫存自動算好，輸入「Demo」，我們安排約 20 分鐘免費線上展示。")}'''
-open("templates.html","w").write(page("templates.html","醫療院所免費 Excel 範本｜排班表、盤點表、特休計算表｜Olimedi 奧里","免費下載醫療院所 Excel 範本：早午晚診排班表、耗材盤點與安全庫存表、特休天數與餘額計算表。加入 Olimedi LINE 輸入關鍵字即可領取。",tbody,"templates.html",[]))
+open("templates.html","w").write(page("templates.html","醫療院所免費 Excel 範本｜排班表、盤點表、特休計算表｜Olimedi 奧里","免費下載醫療院所 Excel 範本：早午晚診排班表、耗材盤點與安全庫存表、特休天數與餘額計算表、診所開業 13 步驟檢核表。加入 Olimedi LINE 輸入關鍵字即可領取。",tbody,"templates.html",[]))
 
 
 home=f'''
