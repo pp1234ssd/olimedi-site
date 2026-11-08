@@ -115,8 +115,8 @@ def build(page, cta, OLIVER_BAND, LINE, SITE, faq_html, faq_ld, AV, preview=True
 <div>
 <p class="eyebrow">FREE CHECKLIST</p>
 <h2 style="font-size:clamp(24px,3vw,32px)">先領一份「診所開業 13 步驟檢核表」</h2>
-<p>13 階段、76 項檢核，每項有負責人與期限欄位；開業代辦進度表與開幕前 14 天倒數表也在裡面。留下 5 個基本資料就能下載，完全免費。</p>
-<a class="btn btn-ink" href="launch-checklist.html">填資料免費領取 →</a>
+<p>13 階段、76 項檢核，每項有負責人與期限欄位；開業代辦進度表與開幕前 14 天倒數表也在裡面。留下 5 個基本資料，我們了解您的開業階段後提供，完全免費。</p>
+<a class="btn btn-ink" href="launch-checklist.html">留下資料，專人提供 →</a>
 </div>
 <div class="lm-art"><div class="lm-sheet"><b></b><b></b><b></b><b></b><b></b><b></b></div></div>
 </div>

@@ -141,7 +141,7 @@ def tpl_cards(compact=False):
     out=""
     for kw,name,desc,feats,cat in TEMPLATES:
         fl="" if compact else "<ul class='check' style='margin:0 0 20px'>"+"".join(f"<li style='font-size:15px'>{f}</li>" for f in feats)+"</ul>"
-        btn = f'<a class="btn btn-ink" style="font-size:14px;padding:11px 16px" href="launch-checklist.html">填 5 個欄位，免費領取 →</a>' if kw=="FORM" else f'<a class="btn btn-line" style="font-size:14px;padding:11px 16px" href="{LINE}" target="_blank" rel="noopener">{AV}加 LINE 輸入「{kw}」領取</a>'
+        btn = f'<a class="btn btn-ink" style="font-size:14px;padding:11px 16px" href="launch-checklist.html">留下基本資料，專人提供 →</a>' if kw=="FORM" else f'<a class="btn btn-line" style="font-size:14px;padding:11px 16px" href="{LINE}" target="_blank" rel="noopener">{AV}加 LINE 輸入「{kw}」領取</a>'
         out+=f'''<div class="post-card" style="cursor:default"><span class="tagline {tagcls(cat)}" style="align-self:flex-start">免費 Excel 範本</span><h2>{name}</h2><p>{desc}</p>{fl}{btn}</div>'''
     return f'<div class="post-list">{out}</div>'
 tbody=f'''<section class="hero simple" style="padding-bottom:24px"><div class="ring-bg"></div><div class="wrap">
@@ -150,7 +150,7 @@ tbody=f'''<section class="hero simple" style="padding-bottom:24px"><div class="r
 <p class="lead">排班、盤點、特休，先用 Excel 把基本功做好。加入 Oliver 的 LINE，輸入關鍵字就會自動傳給你，完全免費。</p>
 </div></section>
 <section style="padding-top:24px"><div class="wrap">{tpl_cards()}
-<div class="note" style="margin-top:32px;font-size:15px">已經是 Oliver 的好友？直接在 LINE 聊天室輸入「排班表」「盤點表」或「特休表」即可；開業檢核表請<a href="launch-checklist.html">填寫基本資料</a>後領取。範本為一般管理工具，不構成法律意見；法規相關計算請以主管機關最新公告為準。</div>
+<div class="note" style="margin-top:32px;font-size:15px">已經是 Oliver 的好友？直接在 LINE 聊天室輸入「排班表」「盤點表」或「特休表」即可；開業檢核表請<a href="launch-checklist.html">填寫基本資料</a>，由專人聯繫後提供。範本為一般管理工具，不構成法律意見；法規相關計算請以主管機關最新公告為準。</div>
 </div></section>
 {LINE_CTA("Excel 管得很累？<br>先把範本拿走，再看要不要升級","範本能幫你把基本功做好；如果想讓排班、打卡、特休、庫存自動算好，輸入「Demo」，我們安排約 20 分鐘免費線上展示。")}'''
 open("templates.html","w").write(page("templates.html","醫療院所免費 Excel 範本｜排班表、盤點表、特休計算表｜Olimedi 奧里","免費下載醫療院所 Excel 範本：早午晚診排班表、耗材盤點與安全庫存表、特休天數與餘額計算表、診所開業 13 步驟檢核表。加入 Olimedi LINE 輸入關鍵字即可領取。",tbody,"templates.html",[]))
@@ -255,16 +255,16 @@ prod("materials.html","庫存管理系統",
 # ================= 開業檢核表領取頁（表單）
 FORM_EMBED=""  # 建好 Google 表單後，把「嵌入 HTML」裡的 src 網址貼在這裡
 _form = (f'<iframe src="{FORM_EMBED}" width="100%" height="1180" frameborder="0" marginheight="0" marginwidth="0" title="開業檢核表領取表單" style="border-radius:18px;background:#fff">載入中…</iframe>' if FORM_EMBED
-  else f'''<div class="post-card" style="cursor:default"><h2 style="margin-top:0">表單準備中</h2><p>請先加 LINE 跟 Oliver 說「我要開業檢核表」，並留下：姓名／稱呼、預計開業區域、科別、聯絡電話或 LINE、方便聯繫的時間，我們會把檢核表傳給您並安排後續聯繫。</p>{cta("加 LINE 跟 Oliver 說")}</div>''')
+  else f'''<div class="post-card" style="cursor:default"><h2 style="margin-top:0">表單準備中</h2><p>請先加 LINE 跟 Oliver 說「我要開業檢核表」，並留下：姓名／稱呼、預計開業區域、科別、聯絡電話或 LINE、方便聯繫的時間。我們會在 1 個工作天內與您聯繫，了解開業階段後提供檢核表。</p>{cta("加 LINE 跟 Oliver 說")}</div>''')
 lc=f'''<section class="hero simple" style="padding-bottom:30px"><div class="ring-bg"></div><div class="wrap">
 <p class="crumb"><a href="index.html">首頁</a> / <a href="templates.html">免費範本</a> / 開業檢核表</p>
 <p class="eyebrow">FREE CHECKLIST</p><h1>診所開業 13 步驟檢核表</h1>
-<p class="lead" style="max-width:40em">13 個階段、76 個檢核項目，每項填負責人與期限就能追蹤進度；另附開業代辦進度表與開幕前 14 天倒數表。各科別醫療院所適用。留下 5 個基本資料，送出後立即顯示下載連結，我們也會在您方便的時間與您聯繫，聊聊開業規劃。</p>
-<div class="trust"><span>Excel 格式，公式自動計算</span><span>各科別適用</span><span>送出後立即下載</span></div>
+<p class="lead" style="max-width:40em">13 個階段、76 個檢核項目，每項填負責人與期限就能追蹤進度；另附開業代辦進度表與開幕前 14 天倒數表。各科別醫療院所適用。留下 5 個基本資料，我們會先了解您的開業階段與需求，於 1 個工作天內在您方便的時間與您聯繫，並提供適合您科別與階段的檢核表版本。</p>
+<div class="trust"><span>Excel 格式，公式自動計算</span><span>各科別適用</span><span>專人聯繫後提供</span></div>
 </div></section>
 <section style="padding-top:20px"><div class="wrap" style="max-width:860px">
 {_form}
-<p class="note" style="margin-top:24px">您提供的資料僅用於傳送檢核表、回覆詢問與安排開業諮詢，不會提供給無關第三人；詳見<a href="privacy.html">隱私權聲明</a>。檢核表為開業流程管理工具，不構成法律、稅務、建築、消防、放射、健保或醫療專業意見，實際辦理請以主管機關最新公告為準。</p>
+<p class="note" style="margin-top:24px">送出後不會自動下載；我們會先與您聯繫，再依科別與開業階段提供檢核表。您提供的資料僅用於提供檢核表、回覆詢問與安排開業諮詢，不會提供給無關第三人；詳見<a href="privacy.html">隱私權聲明</a>。檢核表為開業流程管理工具，不構成法律、稅務、建築、消防、放射、健保或醫療專業意見，實際辦理請以主管機關最新公告為準。</p>
 </div></section>
 <section class="alt"><div class="wrap">
 <div class="center" style="margin-bottom:40px"><p class="eyebrow">WHAT\'S INSIDE</p><h2>檢核表裡有什麼</h2></div>
@@ -277,7 +277,7 @@ lc=f'''<section class="hero simple" style="padding-bottom:30px"><div class="ring
 </div></section>
 <section style="padding-top:0"><div class="wrap center"><p>不想填表單？<a class="more" href="services.html">先看開業代辦服務 →</a>　或　{cta("直接加 LINE 問 Oliver")}</p></div></section>
 '''
-open("launch-checklist.html","w").write(page("launch-checklist.html","診所開業 13 步驟檢核表 免費領取｜Olimedi 奧里","免費領取診所開業 13 步驟檢核表（Excel）：13 階段、76 項檢核、開業代辦進度與開幕前 14 天倒數。留下基本資料即可下載，各科別醫療院所適用。",lc,"templates.html",[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":SITE+"/"},{"@type":"ListItem","position":2,"name":"免費範本","item":SITE+"/templates.html"},{"@type":"ListItem","position":3,"name":"開業檢核表","item":SITE+"/launch-checklist.html"}]}]))
+open("launch-checklist.html","w").write(page("launch-checklist.html","診所開業 13 步驟檢核表 免費領取｜Olimedi 奧里","免費領取診所開業 13 步驟檢核表（Excel）：13 階段、76 項檢核、開業代辦進度與開幕前 14 天倒數。留下基本資料，專人聯繫後提供，各科別醫療院所適用。",lc,"templates.html",[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":SITE+"/"},{"@type":"ListItem","position":2,"name":"免費範本","item":SITE+"/templates.html"},{"@type":"ListItem","position":3,"name":"開業檢核表","item":SITE+"/launch-checklist.html"}]}]))
 
 open("404.html","w").write(page("404.html","找不到頁面｜Olimedi 奧里","找不到這個頁面。",f'<section class="center"><div class="wrap"><h1>找不到這個頁面</h1><p class="sub">頁面可能已經移動。</p><div class="cta-row" style="justify-content:center"><a class="btn btn-ghost" href="index.html">回到首頁</a>{cta()}</div></div></section>',"",[]).replace('<link rel="canonical" href="https://olimedi.com/404.html">\n','<meta name="robots" content="noindex">\n'))
 print("built")
