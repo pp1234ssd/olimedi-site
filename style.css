@@ -269,12 +269,13 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
 
 /* services page */
 .agency{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:start}
-.ag-list{display:flex;flex-direction:column;gap:10px}
-.ag-row{display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px 18px}
+.ag-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ag-row.ag-0{grid-column:1/-1}
+.ag-row{display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px 18px}
 .ag-row.ag-0{background:var(--mint);border-color:#CBE0D3;align-items:start}
 .ag-n{font-family:'Plus Jakarta Sans','Noto Sans TC',sans-serif;font-weight:800;font-size:20px;color:var(--g);text-align:center;background:#fff;border-radius:12px;padding:6px 0;border:1px solid var(--line)}
 .ag-0 .ag-n{font-size:14px;padding:9px 0}
-.ag-t{font-weight:700;font-size:17px}
+.ag-t{font-weight:700;font-size:16px;line-height:1.45}
 .ag-d{color:var(--mute);font-size:14px;margin-top:4px;line-height:1.6}
 .ag-side{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:28px;position:sticky;top:90px}
 .ag-side h3{margin:0 0 14px;font-size:20px}
@@ -305,7 +306,7 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
 .lm-sheet b{display:block;height:12px;border-radius:6px;background:#E6EEE9;position:relative;padding-left:26px}
 .lm-sheet b::before{content:'';position:absolute;left:0;top:-4px;width:18px;height:18px;border-radius:5px;border:2px solid var(--g);background:#fff}
 .lm-sheet b:nth-child(-n+3)::before{background:var(--g) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3L15 7' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat}
-@media(max-width:900px){.agency,.svc-grid,.tl-grid,.scope,.lead-magnet{grid-template-columns:1fr}.ag-side{position:static}.lead-magnet{padding:28px}}
+@media(max-width:900px){.agency,.svc-grid,.tl-grid,.scope,.lead-magnet,.ag-list{grid-template-columns:1fr}.ag-side{position:static}.lead-magnet{padding:28px}}
 
 /* home: service strip */
 .svc-strip{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:48px}
