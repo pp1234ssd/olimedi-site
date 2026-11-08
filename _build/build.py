@@ -25,7 +25,7 @@ def page(path,title,desc,body,active,schema,og="/img/og.jpg"):
     return _abs(_page(path,title,desc,body,active,schema,og))
 def _page(path,title,desc,body,active,schema,og="/img/og.jpg"):
     url=SITE+"/"+("" if path=="index.html" else path)
-    nav="".join(f'<a href="{h}"{" aria-current=\"page\"" if h==active else ""}>{t}</a>' for h,t in [("attendance.html","考勤管理系統"),("materials.html","庫存管理系統"),("blog/","診所管理專欄"),("templates.html","免費範本")])
+    nav="".join(f'<a href="{h}"{" aria-current=\"page\"" if h==active else ""}{" class=\"hot\"" if h=="services.html" else ""}>{t}</a>' for h,t in [("attendance.html","考勤管理"),("materials.html","庫存管理"),("services.html","開業代辦"),("blog/","診所管理專欄"),("templates.html","免費範本")])
     ld="\n".join(f'<script type="application/ld+json">{json.dumps(s,ensure_ascii=False)}</script>' for s in schema)
     return f'''<!doctype html>
 <html lang="zh-Hant-TW">
@@ -56,7 +56,7 @@ def _page(path,title,desc,body,active,schema,og="/img/og.jpg"):
 <body>
 <header class="top"><div class="wrap">
 <a class="brand" href="index.html" aria-label="Olimedi 奧里醫療資訊 首頁">{logo()}<b><span>Oli</span>medi</b><small>奧里醫療資訊</small></a>
-<nav class="main">{nav}<a class="btn btn-line" href="{LINE}" target="_blank" rel="noopener">LINE 諮詢</a></nav>
+<nav class="main">{nav}<a class="btn btn-ink" href="{LINE}" target="_blank" rel="noopener">問 Oliver</a></nav>
 <details class="mnav"><summary aria-label="開啟選單"><span></span><span></span><span></span></summary><div class="mnav-panel">{nav}<a class="btn btn-line" href="{LINE}" target="_blank" rel="noopener">問 Oliver・LINE 諮詢</a></div></details>
 </div></header>
 <main>
@@ -64,7 +64,7 @@ def _page(path,title,desc,body,active,schema,og="/img/og.jpg"):
 </main>
 <footer><div class="wrap">
 <div><a class="brand" href="index.html">{logo(30,"#fff")}<b><span>Oli</span>medi</b></a><p style="margin:12px 0 0">把時間還給自己，診所的瑣事交給 Oli。</p></div>
-<nav><a href="attendance.html">Oli 考勤管理系統</a><a href="materials.html">Oli 庫存管理系統</a><a href="blog/">診所管理專欄</a><a href="{LINE}" target="_blank" rel="noopener">LINE：Oliver 行動管家</a><a href="https://www.facebook.com/profile.php?id=61595186213662" target="_blank" rel="noopener">Facebook 粉絲專頁</a><a href="https://www.instagram.com/olimedi2026/" target="_blank" rel="noopener">Instagram</a><a href="https://www.threads.com/@olimedi2026" target="_blank" rel="noopener">Threads</a></nav>
+<nav><a href="attendance.html">Oli 考勤管理系統</a><a href="materials.html">Oli 庫存管理系統</a><a href="services.html">診所開業代辦</a><a href="blog/">診所管理專欄</a><a href="templates.html">免費範本</a><a href="{LINE}" target="_blank" rel="noopener">LINE：Oliver 行動管家</a><a href="https://www.facebook.com/profile.php?id=61595186213662" target="_blank" rel="noopener">Facebook 粉絲專頁</a><a href="https://www.instagram.com/olimedi2026/" target="_blank" rel="noopener">Instagram</a><a href="https://www.threads.com/@olimedi2026" target="_blank" rel="noopener">Threads</a></nav>
 <div style="width:100%;border-top:1px solid rgba(247,245,238,.14);padding-top:20px;line-height:1.9">© 2026 Olimedi 奧里醫療資訊 版權所有　·　<a href="privacy.html">隱私權聲明</a><br>本網站之文字、圖片、系統畫面、Logo 及 Oliver 角色圖像，未經書面授權不得轉載、重製或使用。<br>網站中的系統畫面皆為示範資料，人名、診所、病歷號與廠商名稱均為虛構。系統之薪資、加班、勞健保與特休等計算結果僅供參考，實際仍以相關法令及主管機關公告為準。實際功能以展示及合約內容為準。LINE 為 LY Corporation 之商標。</div>
 </div></footer>
 <div class="qr-modal" id="qrModal" hidden><div class="qr-box"><button class="qr-close" type="button" aria-label="關閉" onclick="closeQR()">×</button><img src="/img/oliver.svg" alt="" width="64" height="64" class="qr-oliver"><h3>用手機掃描，加 Oliver 好友</h3><p>打開手機 LINE → 右上角「加入好友」→ 掃描 QR Code</p><img src="/img/line-qr.png" alt="Oliver LINE 官方帳號 QR Code" width="220" height="220" class="qr-img"><p class="qr-id">或在 LINE 搜尋 ID：<b>@336appfx</b></p><a class="qr-desktop" href="line://ti/p/@336appfx">已安裝 LINE 電腦版？直接開啟</a></div></div>
@@ -94,6 +94,33 @@ def OLIVER_BAND(h="有問題？問 Oliver 就好",p="Oliver 是 Olimedi 的行�
 <img class="av-lg" src="img/oliver.svg" alt="Oliver，Olimedi 的行動管家" width="200" height="200" loading="lazy">
 <div><span class="bubble">嗨！我是 Oliver 👋</span><h2>{h}</h2><p>{p}</p>{cta("加入 Oliver 好友")}</div>
 </div></div></section>'''
+KW=[("排班表","早午晚診排班"),("盤點表","安全庫存與效期"),("特休表","特休天數試算"),("開業","13 步驟檢核表"),("Demo","預約展示")]
+def LINE_CTA(h="加 LINE，輸入一個字，<br>先把免費範本拿走",p="不用填表單、不用留電話。Oliver 會直接把 Excel 範本傳給你；想看系統再輸入「Demo」，我們安排 20 分鐘線上展示。",first="排班表",fname="醫療院所早午晚診排班表.xlsx",fdesc="下拉填班，每診人數自動檢查"):
+    kws="".join(f"<span><b>{k}</b> {d}</span>" for k,d in KW)
+    return f'''<section id="line"><div class="wrap"><div class="linebox">
+<div><p class="eyebrow">START WITH LINE</p><h2>{h}</h2><p class="sub" style="margin-bottom:0">{p}</p>
+<div class="kw">{kws}</div>
+<a class="btn btn-line" href="{LINE}" target="_blank" rel="noopener">{AV}加入 Oliver 好友 @336appfx</a></div>
+<div class="phone-mock" aria-hidden="true"><div class="hdr"><img src="img/oliver.svg" alt="">Oliver｜Olimedi 行動管家</div>
+<div class="body"><div class="lb o">您好，我是 Oliver 👋 直接輸入「排班表」「盤點表」「特休表」就能領免費範本。</div><div class="lb u">{first}</div><div class="lb f"><i>XLS</i><div>{fname}<br><span style="color:#888;font-size:11px">{fdesc}</span></div></div><div class="lb o">想讓這些事自動串起來？輸入「Demo」預約免費展示。</div><div class="lb u">Demo</div></div>
+<div class="ft">輸入訊息…</div></div>
+</div></div></section>'''
+def DAY(cards,stickers=("今天 3 人遲到？沒有，0 人。","✓ 今天的事都做完了"),peek="oliver-thumb"):
+    out="".join(f'<a class="dcard{" done" if done else ""}" href="{href}"><div class="t">{t}<small>{st}</small></div><div><h4>{h}</h4><p>{p}</p></div><div class="thumb"><img src="img/{k}.webp" alt="" loading="lazy"></div></a>' for t,st,h,p,k,href,done in cards)
+    return f'<div class="day"><div class="sticker s2">{stickers[0]}</div>{out}<img class="oliver-peek" src="img/oliver/{peek}.svg" alt="Oliver" width="170" height="263"><div class="sticker s1">{stickers[1]}</div></div>'
+def CHAT(q,replies):
+    r="".join(f'<a class="reply" href="{h}">{t} <small>→ {d}</small></a>' for t,d,h in replies)
+    return f'<section style="padding-top:50px;padding-bottom:40px"><div class="wrap"><div class="chat"><div class="msg"><img src="img/oliver.svg" alt="Oliver" width="44" height="44"><div class="bub">{q}</div></div><div class="replies">{r}</div></div></div></section>'
+def STOPS(stops):
+    out=""
+    for i,(pm,pmcls,when,sub,h3,p,checks,media) in enumerate(stops):
+        m=media if media.startswith("<") else f'<div class="pic{" phone" if media.startswith("phone:") else ""}"><img src="img/{media.replace("phone:","")}.webp" alt="{h3}" loading="lazy"></div>'
+        if media.startswith("<"): m=f'<div class="pic">{media}</div>'
+        out+=f'''<div class="stop{" alt" if i%2 else ""}"><div class="txt"><span class="pm {pmcls}">{pm}</span><h3><span class="when">{when}</span>{h3}</h3><p>{p}</p>{"<ul class=check>"+"".join(f"<li>{c}</li>" for c in checks)+"</ul>" if checks else ""}</div><div class="clock">{when.split(" ")[-1] if " " in when else when}<small>{sub}</small></div>{m}</div>'''
+    return f'<div class="tline">{out}</div>'
+def MONTH(pm,h2,p,ticks,k):
+    t="".join(f"<div><b>{a}</b>{b}</div>" for a,b in ticks)
+    return f'<section style="padding-top:0"><div class="wrap"><div class="month"><div><span class="pm">{pm}</span><h2>{h2}</h2><p>{p}</p><div class="ticks">{t}</div></div><img src="img/{k}.webp" alt="{h2}" loading="lazy"></div></div></section>'
 
 ORG={"@context":"https://schema.org","@type":"Organization","name":"Olimedi 奧里醫療資訊","alternateName":["奧里","Olimedi"],"url":SITE+"/","logo":SITE+"/favicon.svg","slogan":"把時間還給自己","sameAs":[LINE,"https://www.facebook.com/profile.php?id=61595186213662","https://www.instagram.com/olimedi2026/","https://www.threads.com/@olimedi2026"]}
 def faq_html(items): return "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q,a in items)
@@ -112,9 +139,9 @@ def tpl_cards(compact=False):
     out=""
     for kw,name,desc,feats,cat in TEMPLATES:
         fl="" if compact else "<ul class='check' style='margin:0 0 20px'>"+"".join(f"<li style='font-size:15px'>{f}</li>" for f in feats)+"</ul>"
-        out+=f'''<div class="post-card" style="cursor:default"><span class="tagline {"tag-g" if cat=="庫存管理" else "tag-s"}" style="align-self:flex-start">免費 Excel 範本</span><h2>{name}</h2><p>{desc}</p>{fl}<a class="btn btn-line" style="font-size:15px;padding:12px 18px" href="{LINE}" target="_blank" rel="noopener">{AV}加 LINE 輸入「{kw}」領取</a></div>'''
+        out+=f'''<div class="post-card" style="cursor:default"><span class="tagline {"tag-g" if cat=="庫存管理" else "tag-s"}" style="align-self:flex-start">免費 Excel 範本</span><h2>{name}</h2><p>{desc}</p>{fl}<a class="btn btn-line" style="font-size:14px;padding:11px 16px" href="{LINE}" target="_blank" rel="noopener">{AV}加 LINE 輸入「{kw}」領取</a></div>'''
     return f'<div class="post-list">{out}</div>'
-tbody=f'''<section class="hero" style="padding-bottom:24px"><div class="wrap" style="display:block">
+tbody=f'''<section class="hero simple" style="padding-bottom:24px"><div class="ring-bg"></div><div class="wrap">
 <p class="crumb"><a href="index.html">首頁</a> / 免費範本</p>
 <p class="eyebrow">FREE TEMPLATES</p><h1>醫療院所免費 Excel 範本</h1>
 <p class="lead">排班、盤點、特休，先用 Excel 把基本功做好。加入 Oliver 的 LINE，輸入關鍵字就會自動傳給你，完全免費。</p>
@@ -122,56 +149,40 @@ tbody=f'''<section class="hero" style="padding-bottom:24px"><div class="wrap" st
 <section style="padding-top:24px"><div class="wrap">{tpl_cards()}
 <div class="note" style="margin-top:32px;font-size:15px">已經是 Oliver 的好友？直接在 LINE 聊天室輸入「排班表」「盤點表」或「特休表」即可。範本為一般管理工具，不構成法律意見；法規相關計算請以主管機關最新公告為準。</div>
 </div></section>
-{OLIVER_BAND("Excel 管得很累？問 Oliver","範本能幫你把基本功做好；如果想讓排班、打卡、特休、庫存自動算好，加 LINE 跟 Oliver 說一聲，我們安排約 20 分鐘免費線上展示。")}'''
+{LINE_CTA("Excel 管得很累？<br>先把範本拿走，再看要不要升級","範本能幫你把基本功做好；如果想讓排班、打卡、特休、庫存自動算好，輸入「Demo」，我們安排約 20 分鐘免費線上展示。")}'''
 open("templates.html","w").write(page("templates.html","醫療院所免費 Excel 範本｜排班表、盤點表、特休計算表｜Olimedi 奧里","免費下載醫療院所 Excel 範本：早午晚診排班表、耗材盤點與安全庫存表、特休天數與餘額計算表。加入 Olimedi LINE 輸入關鍵字即可領取。",tbody,"templates.html",[]))
 
 
 home=f'''
-<section class="hero"><div class="wrap">
+<section class="hero"><div class="ring-bg"></div><div class="wrap">
 <div>
-<p class="eyebrow">診所考勤管理 · 庫存管理系統</p>
-<h1>診所瑣事交給 Oli，<br>把時間<em>還給自己</em>。</h1>
-<p class="lead">排班、打卡、薪資、耗材、叫貨，<br>專為診所設計，<span style="white-space:nowrap">手機就能用。</span></p>
-<div class="cta-row">{cta()}<a class="btn btn-ghost" href="#products">看看產品</a></div>
+<p class="eyebrow">醫療院所的行政管家</p>
+<h1><span style="white-space:nowrap">診所每天的瑣事，</span><br><em>交給 Oli</em> 就好。</h1>
+<p class="lead">早上打卡、中午點貨、晚上排班、月底算薪水，這些事不該佔掉院長和櫃台的時間。Oli 考勤管理系統與庫存管理系統，把它們接成一條線。</p>
+<div class="cta-row">{cta("加 LINE 預約免費展示")}<a class="btn btn-ghost" href="#day">看診所的一天 ↓</a></div>
 <p class="cta-note">在 LINE 上直接聊，不用填表單。</p>
 </div>
-{I("att-hero","Oli 考勤管理系統的電腦總覽畫面與員工手機上的我的班表","hero-img shot bare",False)}
+{DAY([("08:30","開診前","員工手機掃 QR 打卡","櫃台平板一掃就到班，不用買打卡鐘。","att-qr","attendance.html",False),("12:10","午休","3 項耗材 30 天內到期","先到期先用，整盒過期丟掉的事不再發生。","mat-trace","materials.html",False),("18:40","晚診前","下個月班表草稿出來了","設好每診人數，系統先排，櫃台只要微調。","att-auto","attendance.html",False),("月底","結算日","薪資一鍵算好","出勤、請假、加班自動帶入，不用再對三份表。","att-pay","attendance.html",True)])}
 </div></section>
+{CHAT("嗨，我是 Oliver。你們診所現在最卡的是哪一件？點一下，我帶你去看解法。",[("排班、打卡好累","考勤管理","attendance.html"),("耗材常過期、常缺貨","庫存管理","materials.html"),("我要開新診所","開業代辦","services.html"),("先拿免費 Excel 範本","範本","templates.html")])}
 
-<section class="dark"><div class="wrap">
-<p class="eyebrow">聽起來很熟悉？</p>
-<h2>診所最花時間的，往往不是看診</h2>
-<p class="sub">這些事每個月都在發生，而且都可以不用這麼累。</p>
-<div class="pains">
-<div class="pain"><p class="q">月底算薪水算到半夜</p><p class="a">打卡、請假、加班分開記，結算要一筆一筆對。</p></div>
-<div class="pain"><p class="q">班表改來改去</p><p class="a">早午晚診、輪休、臨時請假，LINE 群組訊息找不到。</p></div>
-<div class="pain"><p class="q">要用才發現缺貨</p><p class="a">耗材剩多少只有某個助理知道，叫貨常常來不及。</p></div>
-<div class="pain"><p class="q">耗材放到過期</p><p class="a">整盒過期才發現，錢就這樣丟進垃圾桶。</p></div>
-</div>
+<section id="day" style="padding-top:40px"><div class="wrap">
+<div class="center" style="margin-bottom:72px"><p class="eyebrow">A DAY AT THE CLINIC</p><h2>跟著診所的一天，看 Oli 在哪裡幫上忙</h2><p class="sub" style="margin:0 auto">每個時間點都是一件真的會發生的瑣事。畫面為系統示意，診所名稱與資料皆為範例。</p></div>
+{STOPS([("OLI 考勤管理系統","a","早上 08:30","開診前","打卡不用排隊，也不用打卡鐘","櫃台平板顯示 QR，員工用自己的手機掃碼就到班。QR 定時更換，拍照轉傳也沒用。",["出勤紀錄自動保存","遲到、忘打卡列成待處理清單","手機就能看自己的班表與時數"],"att-qr"),
+("OLI 庫存管理系統","b","中午 12:10","午休","點貨 5 分鐘，效期自動盯","依每日用量算安全庫存，低於安全線的排最前面；30 天內到期自動標色，先到期先用。",["手機掃條碼入庫，不用一字一字打","ABC 分級，高價品項每週盤、低價每季盤","叫貨單依消耗量自動產生"],"phone:mat-mobile"),
+("OLI 考勤管理系統","a","傍晚 18:40","晚診前","下個月班表，一個晚上變十分鐘","設好每診最少人數、每人工時上限與休假，系統先排出整月草稿；四週變形工時也能排。",["每診人數不足自動標紅","員工手機看班表、申請調班","班表一發佈，大家同步"],"att-auto")])}
 </div></section>
+{MONTH("月底 · 結算日","算薪水，<br>不用再熬到半夜","出勤、請假、加班與津貼自動帶入；忘打卡與未核定加班先列成清單，處理完再結算。報表匯出 Excel，會計直接用。",[("1 鍵","整月薪資結算"),("Excel","出勤與薪資匯出"),("0 份","需要人工核對的表"),("每月","人事成本一眼看")],"att-pay")}
 
-<section id="products"><div class="wrap">
-<div class="center"><p class="eyebrow">PRODUCTS</p><h2>Oli 系列，讓診所日常更簡單</h2></div>
-<div class="show">
-<div class="txt"><span class="tagline tag-s">Oli 考勤管理系統</span><h3>排班、打卡、薪資，<br>一套搞定</h3><p>從早午晚診排班、手機打卡、請假加班，到每月薪資，同一個系統完成。</p>
-<ul class="check"><li>設好人力需求，整月班表自動排</li><li>手機掃 QR 打卡，不用買打卡鐘</li><li>加班、請假、勞健保，薪資自動試算</li></ul>
-<a class="more" href="attendance.html">看考勤管理系統 →</a></div>
-{I("att-qr","櫃台平板顯示打卡 QR，員工用手機掃描打卡","shot bare")}
-</div>
-<div class="show rev">
-<div class="txt"><span class="tagline tag-g">Oli 庫存管理系統</span><h3>診所庫存，<br>一眼看清楚</h3><p>庫存、效期、採購、應付帳款，一套系統管到好。快缺貨、快過期，系統會提醒你。</p>
-<ul class="check"><li>手機掃條碼，快速入庫</li><li>依實際用量算出該補多少</li><li>常用耗材設成套組，一鍵領用</li></ul>
-<a class="more" href="materials.html">看庫存管理系統 →</a></div>
-{I("mat-dash","Oli 庫存管理系統總覽：庫存不足品項與建議補貨數量、效期提醒")}
-</div>
-</div></section>
+<section class="alt"><div class="wrap"><div class="svc-strip">
+<div><p class="eyebrow">CLINIC LAUNCH</p><h2 style="font-size:clamp(26px,3.2vw,36px)">要開新診所？<br>開業代辦從地點評估到健保特約一條線跑完</h2><p class="sub" style="margin-bottom:22px">你準備委託書與資料，公會送件、衛生局現勘、執照、憑證、統編、勞健保、醫療網到健保特約由我們跑，每週回報進度。人事與耗材制度可一起建好。</p><div class="cta-row"><a class="btn btn-ink" href="services.html">看開業代辦服務</a>{cta("問 Oliver・索取報價")}</div></div>
+<ol><li>開業地點評估（含）</li><li>公會送件</li><li>衛生局開業申請與現勘陪同</li><li>開業執照與執業執照</li><li>醫事機構／人員憑證 IC 卡</li><li>統一編號配書</li><li>勞健保投保單位設立</li><li>健保醫療網（VPN）申請</li><li>健保特約診所申請</li><li>人事、耗材、資訊系統建置</li></ol>
+</div></div></section>
 
-<section><div class="wrap"><div class="center"><p class="eyebrow">FREE TEMPLATES</p><h2>先免費拿走這 3 個範本</h2><p class="sub">排班表、盤點表、特休計算表，加 Oliver 的 LINE 輸入關鍵字就會自動傳給你。</p></div>{tpl_cards(compact=True)}</div></section>
-{STEPS}
-{OLIVER_BAND()}
+{LINE_CTA()}
 
 <section style="padding-top:0"><div class="wrap" style="max-width:820px">
-<h2 style="font-size:28px">常見問題</h2>
+<p class="eyebrow">FAQ</p><h2 style="font-size:30px">常見問題</h2>
 <div style="margin-top:20px">{faq_html(faq)}</div>
 </div></section>
 '''
@@ -180,30 +191,26 @@ open("index.html","w").write(page("index.html","Olimedi 奧里｜診所考勤管
  home,"index.html",[ORG,{"@context":"https://schema.org","@type":"WebSite","name":"Olimedi 奧里","url":SITE+"/","inLanguage":"zh-TW"},faq_ld(faq)]))
 
 # ================= product page
-def prod(fn,name,title,desc,eyebrow,h1,lead,hero_k,hero_alt,shows,trust,other):
-    sh=""
-    for i,(tag,h3,p,checks,k,alt,cls) in enumerate(shows):
-        media = k if k.startswith("<") else I(k,alt,cls)
-        sh+=f'''<div class="show{" rev" if i%2 else ""}">
-<div class="txt"><span class="tagline {"tag-s" if fn=="attendance.html" else "tag-g"}">{tag}</span><h3>{h3}</h3><p>{p}</p>{"<ul class='check'>"+"".join(f"<li>{c}</li>" for c in checks)+"</ul>" if checks else ""}</div>
-{media}
-</div>'''
-        if i==1: sh+=f'<div class="center" style="margin:-40px 0 96px">{cta("想看實際操作？問 Oliver")}</div>'
+def prod(fn,name,title,desc,eyebrow,h1,lead,hero_k,hero_alt,stops,month,trust,other,day,stickers,pm):
     body=f'''
-<section class="hero"><div class="wrap">
+<section class="hero"><div class="ring-bg"></div><div class="wrap">
 <div>
 <p class="crumb"><a href="index.html">首頁</a> / Oli {name}</p>
 <p class="eyebrow">{eyebrow}</p>
 <h1>{h1}</h1>
 <p class="lead">{lead}</p>
-<div class="cta-row">{cta()}</div>
+<div class="cta-row">{cta()}<a class="btn btn-ghost" href="#day">看它的一天 ↓</a></div>
 <div class="trust">{"".join(f"<span>{t}</span>" for t in trust)}</div>
 </div>
-{I(hero_k,hero_alt,"hero-img shot" + (" bare" if fn=="attendance.html" else ""),False)}
+{DAY(day,stickers,"oliver-tablet")}
 </div></section>
-<section class="alt"><div class="wrap">{sh}</div></section>
-{STEPS.replace('class="alt" ','')}
-{OLIVER_BAND("想看看用在你的診所會怎樣？")}
+<section id="day"><div class="wrap">
+<div class="center" style="margin-bottom:72px"><p class="eyebrow">A DAY WITH OLI {name.upper() if False else ""}</p><h2>Oli {name}的一天</h2><p class="sub" style="margin:0 auto">畫面為系統示意，診所名稱與資料皆為範例。實際功能以展示及合約內容為準。</p></div>
+{STOPS(stops)}
+</div></section>
+{MONTH(*month)}
+{STEPS}
+{LINE_CTA()}
 <section style="padding-top:0"><div class="wrap center"><p>也在找{other[0]}？<a class="more" href="{other[1]}">看 Oli {other[0]} →</a></p></div></section>
 '''
     app={"@context":"https://schema.org","@type":"SoftwareApplication","name":"Oli "+name,"applicationCategory":"BusinessApplication","operatingSystem":"Web","description":desc,"url":f"{SITE}/{fn}","image":f"{SITE}/img/{hero_k}.webp","publisher":{"@type":"Organization","name":"Olimedi 奧里醫療資訊"}}
@@ -214,28 +221,32 @@ prod("attendance.html","考勤管理系統",
  "Oli考勤管理系統｜診所排班、打卡、請假、薪資一套搞定｜Olimedi 奧里",
  "專為醫療院所設計的考勤管理系統。早午晚診排班、手機 QR 打卡、請假加班、每月薪資，在同一個系統完成。加 LINE 預約免費展示。",
  "OLI 考勤管理系統",
- "排班、打卡、薪資，<br><em>一套搞定</em>",
+ "<span style=\"white-space:nowrap\">排班、打卡、薪資，</span><br><em>一套搞定</em>。",
  "專為診所設計。從早午晚診排班、手機打卡、請假加班，到每月薪資，月底結算不用再對三份表。",
  "att-hero","Oli 考勤管理系統的總覽畫面與員工手機上的我的班表",
- [("智能排班","設好人力需求，<br>整月班表自動排","設定每一診最少需要幾個人，系統依員工可做的崗位、休診日和已核准的請假，自動排出整個月的班表，再微調就好。",["早午晚診分開排","工時規定排班當下就提醒"],"att-auto","智能排班設定畫面","shot"),
-  ("手機打卡","手機掃 QR 打卡，<br>拍照轉傳難代打","櫃台平板顯示打卡 QR，每 60 秒換一張。員工用自己的手機掃描、點名字就完成。不用買打卡鐘，也不用裝 App。",["QR 定時更換、單次有效，降低代打卡","可開啟自拍存證"],"att-qr","櫃台平板上的打卡 QR 與員工手機打卡畫面","shot bare"),
-  ("薪資計算","每月薪資自動試算，<br>計算過程看得到","加班、請假、勞健保、勞退提繳依診所設定自動試算，點開每個人就看到計算式，確認後再結算。工資清冊、轉帳清冊一鍵匯出。",["加班先核定再計薪","特休、加退保也幫你盯"],"att-pay","每月薪資明細表","shot"),
-  ("員工自助","員工用手機<br>看自己的班表與薪資單","員工登入後只看得到自己的資料：本月班表、出勤紀錄、薪資單，薪資單可以線上簽收。主管不用再一個一個回答「我這個月排幾天？」",[],"att-phones","員工手機上的我的班表、我的出勤、我的薪資單","shot bare")],
- ["不用買打卡鐘","不用安裝 App","每間診所獨立資料庫"],("庫存管理","materials.html"))
+ [("智能排班","a","晚上 20:00","排班日","設好人力需求，整月班表自動排","設定每一診最少需要幾個人，系統依員工可做的崗位、休診日和已核准的請假，自動排出整個月的班表，再微調就好。",["早午晚診分開排","工時規定排班當下就提醒","四週變形工時也能排"],"att-auto"),
+  ("手機打卡","a","早上 08:30","開診前","手機掃 QR 打卡，拍照轉傳難代打","櫃台平板顯示打卡 QR，每 60 秒換一張。員工用自己的手機掃描、點名字就完成。不用買打卡鐘，也不用裝 App。",["QR 定時更換、單次有效","可開啟自拍存證","遲到、忘打卡自動列成待處理"],"att-qr"),
+  ("員工自助","a","隨時","員工手機","員工用手機看自己的班表與薪資單","員工登入後只看得到自己的資料：本月班表、出勤紀錄、薪資單，薪資單可以線上簽收。主管不用再一個一個回答「我這個月排幾天？」",["手機申請請假、調班","特休餘額自己看","薪資單線上簽收"],"phone:att-phones")],
+ ("月底 · 結算日","每月薪資自動試算，<br>計算過程看得到","加班、請假、勞健保、勞退提繳依診所設定自動試算，點開每個人就看到計算式，確認後再結算。工資清冊、轉帳清冊一鍵匯出。",[("1 鍵","整月薪資結算"),("可追","每一筆計算式"),("Excel","工資與轉帳清冊"),("先核","加班核定再計薪")],"att-pay"),
+ ["不用買打卡鐘","不用安裝 App","每間診所獨立資料庫"],("庫存管理系統","materials.html"),
+ [("08:30","開診前","12 位員工全部掃碼到班","QR 每 60 秒換一張，拍照轉傳沒用。","att-qr","#day",False),("10:15","診中","小美申請下週三調班","主管手機一鍵核准，班表同步更新。","att-phones","#day",False),("20:00","排班日","12 月班表草稿已產生","每診人數不足的格子標紅，微調就好。","att-auto","#day",False),("月底","結算日","薪資一鍵算好","加班、請假、勞健保自動帶入。","att-pay","#day",True)],
+ ("今天 0 人忘記打卡","✓ 班表已發佈"),"a")
 
 phones=f'<div class="phones">{I("mat-scan","手機掃碼入庫，自動帶出醫材品名、批號與效期","")}{I("mat-mobile","手機版總覽：庫存不足品項與建議補貨","")}</div>'
 prod("materials.html","庫存管理系統",
  "Oli庫存管理系統｜診所耗材庫存、效期、採購管理｜Olimedi 奧里",
  "專為診所設計的庫存管理系統：手機掃條碼入庫、快缺貨快過期自動提醒、依用量算出建議訂購量、植入物批號追溯。加 LINE 預約免費展示。",
  "OLI 庫存管理系統",
- "診所庫存，<br><em>一眼看清楚</em>",
- "庫存、效期、採購、應付帳款，一套系統管到好。手機掃條碼，快速入庫，快缺貨、快過期系統會提醒你。",
+ "<span style=\"white-space:nowrap\">診所庫存，</span><br><em>一眼看清楚</em>。",
+ "庫存、效期、採購、應付帳款，一套系統管到好。手機掃條碼快速入庫，快缺貨、快過期系統會提醒你。",
  "mat-dash","Oli 庫存管理系統總覽：庫存不足 13 項與建議補貨數量、效期提醒",
- [("掃碼入庫","掃一下條碼，<br>品名自動帶出來","用手機相機掃醫療器材條碼，系統查詢食藥署公開的醫療器材識別（UDI）資料，已登錄的醫材可自動帶出品名、廠商，條碼上的批號、效期也一起讀進來。沒有登錄的品項，第一次手動建立後，下次掃到就直接入庫。",["電腦、平板、手機都能用","不用安裝 App"],phones,"",""),
-  ("一鍵領用","常用組合，<br>助理點一下就扣庫存","換藥、注射、洗牙、術前準備……把固定會用到的耗材設成套組，領用時選套組就完成，不用一樣一樣找。",["誰、什麼時候、領了什麼都有紀錄","快到期的批號自動先用"],"mat-kits","領用作業畫面：常用、套組與領取清單","shot"),
-  ("採購建議","該補多少，<br>系統幫你算","依近 30 天實際用量、目前庫存和廠商交貨天數，算出每一項的建議補貨量，並依供應商分好，勾一勾就轉成採購單。",["到貨、付款進度一眼看","欠哪家多少錢，月底不用翻帳"],"mat-reorder","採購建議：依供應商分組列出建議訂購量","shot"),
-  ("植入物追溯","每一支植入物用在誰身上，<br>查得到","入庫與領用時記下批號、效期、病歷號與醫師。廠商公告召回時，輸入批號就能查出用在哪些病歷上。",[],"mat-trace","植入物來源流向紀錄","shot")],
- ["快缺貨自動提醒","效期先到先用","不用安裝 App"],("考勤管理系統","attendance.html"))
+ [("掃碼入庫","b","上午 10:30","到貨","掃一下條碼，品名自動帶出來","用手機相機掃醫療器材條碼，系統查詢食藥署公開的醫療器材識別（UDI）資料，已登錄的醫材可自動帶出品名、廠商，條碼上的批號、效期也一起讀進來。",["電腦、平板、手機都能用","第一次手動建立，下次掃到直接入庫","不用安裝 App"],phones),
+  ("一鍵領用","b","診中 14:00","治療前","常用組合，助理點一下就扣庫存","換藥、注射、洗牙、術前準備……把固定會用到的耗材設成套組，領用時選套組就完成，不用一樣一樣找。",["誰、什麼時候、領了什麼都有紀錄","快到期的批號自動先用"],"mat-kits"),
+  ("植入物追溯","b","需要時","召回查詢","每一支植入物用在誰身上，查得到","入庫與領用時記下批號、效期、病歷號與醫師。廠商公告召回時，輸入批號就能查出用在哪些病歷上。",["批號、效期、病歷號、醫師四個欄位","依批號反查使用紀錄"],"mat-trace")],
+ ("每週 · 叫貨日","該補多少，<br>系統幫你算","依近 30 天實際用量、目前庫存和廠商交貨天數，算出每一項的建議補貨量，並依供應商分好，勾一勾就轉成採購單。到貨、付款進度一眼看，月底不用翻帳。",[("30 天","實際用量為基準"),("依廠商","分組建議訂購"),("1 勾","轉成採購單"),("月底","應付帳款一眼看")],"mat-reorder"),
+ ["快缺貨自動提醒","效期先到先用","不用安裝 App"],("考勤管理系統","attendance.html"),
+ [("10:30","到貨","掃碼入庫 18 項，2 分鐘","UDI 自動帶出品名、批號、效期。","mat-scan","#day",False),("12:10","午休","3 項耗材 30 天內到期","先到期先用，整盒過期不再發生。","mat-trace","#day",False),("14:00","治療前","洗牙套組一鍵領用","助理點一下，庫存自動扣。","mat-kits","#day",False),("週五","叫貨日","建議叫貨單已產生","依用量與交貨天數算好，勾選送出。","mat-reorder","#day",True)],
+ ("今天 0 項缺貨","✓ 叫貨單已送出"),"b")
 
 open("404.html","w").write(page("404.html","找不到頁面｜Olimedi 奧里","找不到這個頁面。",f'<section class="center"><div class="wrap"><h1>找不到這個頁面</h1><p class="sub">頁面可能已經移動。</p><div class="cta-row" style="justify-content:center"><a class="btn btn-ghost" href="index.html">回到首頁</a>{cta()}</div></div></section>',"",[]).replace('<link rel="canonical" href="https://olimedi.com/404.html">\n','<meta name="robots" content="noindex">\n'))
 print("built")
@@ -313,26 +324,26 @@ def _tabs(active=None):
     return '<nav class="cat-tabs" aria-label="分類">'+"".join(f'<a href="{h}"{" aria-current=\"page\"" if a else ""}>{t}</a>' for h,t,a in items)+'</nav>'
 cards=_cards(POSTS)
 _unused="".join(f'<a class="post-card" href="/blog/{s}.html"><span class="tagline {"tag-g" if c=="庫存管理" else "tag-s"}" style="align-self:flex-start">{c}</span><h2>{t}</h2><p>{d}</p><span class="go">閱讀全文 →</span></a>' for s,t,d,c,i,dt in sorted(POSTS,key=lambda p:p[5],reverse=True))
-idx=f'''<section class="hero" style="padding-bottom:24px"><div class="wrap" style="display:block">
+idx=f'''<section class="hero simple" style="padding-bottom:24px"><div class="ring-bg"></div><div class="wrap">
 <p class="crumb"><a href="/">首頁</a> / 診所管理專欄</p>
 <p class="eyebrow">BLOG</p><h1>診所管理專欄</h1>
 <p class="lead">排班、加班、耗材、叫貨……西醫、牙醫、中醫、復健、醫美等各類醫療院所都適用的日常管理實用整理。</p>
 {_tabs()}
 </div></section>
 <section style="padding-top:24px"><div class="wrap"><div class="post-list">{cards}</div></div></section>
-{OLIVER_BAND("看完還有問題？問 Oliver")}'''
+{LINE_CTA("看完想直接拿範本？<br>加 LINE 輸入關鍵字就好")}'''
 open("blog/index.html","w").write(page("blog/","診所管理專欄｜排班、加班費、耗材管理實用整理｜Olimedi 奧里","Olimedi 診所管理專欄：診所排班、員工加班費計算、耗材與庫存管理等實用文章。",idx,"blog/",[{"@context":"https://schema.org","@type":"Blog","name":"Olimedi 診所管理專欄","url":SITE+"/blog/"}]))
 
 import sys as _sys0; _sys0.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
-# ================= services (preview: noindex, not in nav/sitemap yet)
+# ================= services
 import services as _svc
-_svc.build(page,cta,OLIVER_BAND,LINE,SITE,faq_html,faq_ld,AV,preview=True)
+_svc.build(page,cta,OLIVER_BAND,LINE,SITE,faq_html,faq_ld,AV,preview=False)
 
 # category pages
 for _c,(_cs,_h1,_desc,_lead,_plink,_pname,_kw) in CATS.items():
     _pl=[p for p in POSTS if p[3]==_c]
     os.makedirs(f"blog/{_cs}",exist_ok=True)
-    _body=f'''<section class="hero" style="padding-bottom:24px"><div class="wrap" style="display:block">
+    _body=f'''<section class="hero simple" style="padding-bottom:24px"><div class="ring-bg"></div><div class="wrap">
 <p class="crumb"><a href="/">首頁</a> / <a href="/blog/">診所管理專欄</a> / {_c}</p>
 <p class="eyebrow">{_c}</p><h1>{_h1}</h1>
 <p class="lead">{_lead}</p>
@@ -340,13 +351,13 @@ for _c,(_cs,_h1,_desc,_lead,_plink,_pname,_kw) in CATS.items():
 </div></section>
 <section style="padding-top:24px"><div class="wrap"><div class="post-list">{_cards(_pl) or '<p class="lead">文章陸續上線中。</p>'}</div>
 <p class="note" style="margin-top:28px">想直接用系統處理這些事？看看 <a href="/{_plink}">{_pname}</a>，或加 LINE 輸入「{_kw}」先領免費 Excel 範本。</p></div></section>
-{OLIVER_BAND("看完還有問題？問 Oliver")}'''
+{LINE_CTA("看完想直接拿範本？<br>加 LINE 輸入關鍵字就好")}'''
     _bc={"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":SITE+"/"},{"@type":"ListItem","position":2,"name":"診所管理專欄","item":SITE+"/blog/"},{"@type":"ListItem","position":3,"name":_c,"item":f"{SITE}/blog/{_cs}/"}]}
     _cp={"@context":"https://schema.org","@type":"CollectionPage","name":_h1,"url":f"{SITE}/blog/{_cs}/","description":_desc,"isPartOf":{"@type":"Blog","name":"Olimedi 診所管理專欄","url":SITE+"/blog/"}}
     open(f"blog/{_cs}/index.html","w").write(page(f"blog/{_cs}/",f"{_h1}｜診所管理專欄｜Olimedi 奧里",_desc,_body,"blog/",[_cp,_bc]))
 
 # sitemap
-urls=[("",1.0),("attendance.html",0.9),("materials.html",0.9),("blog/",0.8),("templates.html",0.8)]+[(f"blog/{v[0]}/",0.7,max([p[5] for p in POSTS if p[3]==k],default="2026-10-05")) for k,v in CATS.items()]+[(f"blog/{p[0]}.html",0.7,p[5]) for p in POSTS]+[("privacy.html",0.3)]
+urls=[("",1.0),("attendance.html",0.9),("materials.html",0.9),("services.html",0.9,"2026-11-08"),("blog/",0.8),("templates.html",0.8)]+[(f"blog/{v[0]}/",0.7,max([p[5] for p in POSTS if p[3]==k],default="2026-10-05")) for k,v in CATS.items()]+[(f"blog/{p[0]}.html",0.7,p[5]) for p in POSTS]+[("privacy.html",0.3)]
 open("sitemap.xml","w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+"".join(f"  <url><loc>{SITE}/{x[0]}</loc><lastmod>{x[2] if len(x)>2 else '2026-10-03'}</lastmod><priority>{x[1]}</priority></url>\n" for x in urls)+"</urlset>\n")
 print("blog",len(POSTS))
 

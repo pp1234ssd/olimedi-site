@@ -49,7 +49,7 @@ def build(page, cta, OLIVER_BAND, LINE, SITE, faq_html, faq_ld, AV, preview=True
          ("費用怎麼算？","代辦費為固定一筆，依地區與科別報價；加值模組另計。訪談後提供書面報價單，沒有隱藏費用。")]
 
     body=f'''
-<section class="hero" style="padding-bottom:40px"><div class="wrap" style="display:block;max-width:860px">
+<section class="hero simple" style="padding-bottom:40px"><div class="ring-bg"></div><div class="wrap">
 <p class="crumb"><a href="index.html">首頁</a> / 開業整合服務</p>
 <p class="eyebrow">CLINIC LAUNCH</p>
 <h1>診所開業整合服務</h1>
@@ -82,7 +82,7 @@ def build(page, cta, OLIVER_BAND, LINE, SITE, faq_html, faq_ld, AV, preview=True
 <p class="eyebrow">ADD-ON MODULES</p>
 <h2>開業之後要跑得順，還有四件事</h2>
 <p class="sub">可以跟代辦一起委託，也可以單獨委託；展第二間店、搬遷或換系統的既有診所也適用。</p>
-<div class="svc-grid svc-grid-4">{cards}</div>
+<div class="svc-grid">{cards}</div>
 </div></section>
 
 <section class="alt"><div class="wrap">
