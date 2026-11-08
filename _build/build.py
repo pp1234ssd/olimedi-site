@@ -141,7 +141,7 @@ def tpl_cards(compact=False):
     out=""
     for kw,name,desc,feats,cat in TEMPLATES:
         fl="" if compact else "<ul class='check' style='margin:0 0 20px'>"+"".join(f"<li style='font-size:15px'>{f}</li>" for f in feats)+"</ul>"
-        btn = f'<a class="btn btn-line" style="font-size:14px;padding:11px 16px" href="{LINE}" target="_blank" rel="noopener">{AV}加 LINE 輸入「開業」，專人提供</a>' if kw=="FORM" else f'<a class="btn btn-line" style="font-size:14px;padding:11px 16px" href="{LINE}" target="_blank" rel="noopener">{AV}加 LINE 輸入「{kw}」領取</a>'
+        btn = f'<a class="btn btn-line" style="font-size:14px;padding:11px 16px" href="{LINE}" target="_blank" rel="noopener">{AV}加 LINE 洽詢領取</a>' if kw=="FORM" else f'<a class="btn btn-line" style="font-size:14px;padding:11px 16px" href="{LINE}" target="_blank" rel="noopener">{AV}加 LINE 輸入「{kw}」領取</a>'
         out+=f'''<div class="post-card" style="cursor:default"><span class="tagline {tagcls(cat)}" style="align-self:flex-start">免費 Excel 範本</span><h2>{name}</h2><p>{desc}</p>{fl}{btn}</div>'''
     return f'<div class="post-list">{out}</div>'
 tbody=f'''<section class="hero simple" style="padding-bottom:24px"><div class="ring-bg"></div><div class="wrap">
@@ -260,7 +260,7 @@ _form=f'''<div class="linebox">
 <div class="step" style="padding:20px 24px"><div class="n">02</div><h3 style="font-size:18px">回覆基本資料</h3><p>姓名／稱呼、預計開業區域、科別、聯絡電話、方便聯繫的時間。</p></div>
 <div class="step" style="padding:20px 24px"><div class="n">03</div><h3 style="font-size:18px">專人聯繫並提供檢核表</h3><p>1 個工作天內，在您方便的時間聯繫，依科別與階段提供檢核表，順便聊聊開業規劃。</p></div>
 </div>
-{cta("加 LINE 輸入「開業」")}</div>
+{cta("加 LINE 洽詢領取")}</div>
 <div class="phone-mock" aria-hidden="true"><div class="hdr"><img src="img/oliver.svg" alt="">Oliver｜Olimedi 行動管家</div>
 <div class="body"><div class="lb u">開業</div><div class="lb o">您好！想了解開業代辦或領取開業檢核表，請回覆以下資料，我們會在 1 個工作天內與您聯繫：<br>1. 姓名／稱呼<br>2. 預計開業區域<br>3. 科別<br>4. 聯絡電話<br>5. 方便聯繫的時間</div><div class="lb u">王醫師／台中北屯／牙醫／09xx-xxx-xxx／平日晚上</div><div class="lb o">收到，王醫師。我們會於平日晚上與您聯繫，謝謝！</div></div>
 <div class="ft">輸入訊息…</div></div>
