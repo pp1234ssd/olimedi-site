@@ -63,7 +63,7 @@ def build(page, cta, OLIVER_BAND, LINE, SITE, faq_html, faq_ld, AV, preview=True
 <h2>開業代辦：地點評估到健保特約，一條線跑完</h2>
 <p class="sub">取得開業必備的許可、執照與合法合規文件。你準備委託書與資料，送件、現勘陪同、領照與申請由我們跑，每週回報進度。</p>
 <div class="ag-list">{agency_rows}</div>
-<div class="center" style="margin-top:32px"><p class="sub" style="margin:0 auto 18px;font-size:15px">診所需依要求提供委託書與必備文件；費用與時程於洽詢時依地區與科別說明。</p>{cta("問 Oliver・洽詢開業代辦")}</div>
+<p class="sub center" style="margin:28px auto 0;font-size:15px">診所需依要求提供委託書與必備文件；費用與時程於洽詢時依地區與科別說明。</p>
 </div></section>
 
 <section><div class="wrap">
