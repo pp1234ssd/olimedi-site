@@ -36,7 +36,7 @@ def build(page, cta, OLIVER_BAND, LINE, SITE, faq_html, faq_ld, AV, preview=True
     # ---- 服務流程 ----
     FLOW=[("01","加 LINE 跟 Oliver 說","告訴我們科別、開業地點、預計開業時間與目前階段。"),
           ("02","地點評估與訪談","先看地點與平面圖能不能順利變成診所，再一起列出要辦的項目與時程。"),
-          ("03","報價與簽約","書面報價單列清楚代辦範圍、不含的規費與付款方式；確認後支付訂金開始。"),
+          ("03","報價與簽約","書面報價單列清楚代辦範圍與時程；確認後簽約開始。"),
           ("04","送件、領照、特約","公會、衛生局、執照、憑證、統編、勞健保、醫療網到健保特約，每週回報進度。")]
     flow="".join(f'<div class="step"><div class="n">{n}</div><h3>{h}</h3><p>{p}</p></div>' for n,h,p in FLOW)
 
@@ -55,7 +55,7 @@ def build(page, cta, OLIVER_BAND, LINE, SITE, faq_html, faq_ld, AV, preview=True
 <h1>診所開業整合服務</h1>
 <p class="lead" style="max-width:36em">從開業地點評估、公會送件、衛生局現勘到健保特約，開業必備的許可與執照由我們跑；人事、耗材與資訊系統也能一起建好。開業最容易出錯的，是大家「以為對方會處理」的交界面。</p>
 <div class="cta-row">{cta("問 Oliver・預約開業諮詢")}<a class="btn btn-ghost" href="#services">看代辦範圍</a></div>
-<div class="trust"><span>各科別醫療院所適用</span><span>含開業地點評估</span><span>規費實報實銷、無隱藏費用</span></div>
+<div class="trust"><span>各科別醫療院所適用</span><span>含開業地點評估</span><span>每週回報進度</span></div>
 </div></section>
 
 <section class="alt" id="services"><div class="wrap">
