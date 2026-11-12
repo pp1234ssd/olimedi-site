@@ -24,7 +24,7 @@
 - [x] 醫材效期管理：避免耗材過期浪費的 4 個方法｜庫存管理（clinic-medical-supply-expiry-management）
 - [x] 診所打卡方式比較：打卡鐘、App、QR 打卡｜排班考勤（clinic-clock-in-methods-comparison）
 - [x] 植入物與高價醫材批號追蹤：召回時怎麼查｜庫存管理（clinic-implant-lot-tracking-recall）
-- [ ] 小診所需要導入管理系統嗎？判斷的 5 個指標｜診所經營
+- [x] 小診所需要導入管理系統嗎？判斷的 5 個指標｜診所經營（small-clinic-management-system-checklist）
 - [ ] 診所叫貨流程 SOP：從請購、到貨到付款｜庫存管理
 - [ ] 診所員工請假規定整理：病假、事假、生理假、家庭照顧假｜排班考勤
 - [ ] 診所勞健保加退保流程與申報期限｜排班考勤
