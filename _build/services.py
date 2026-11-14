@@ -48,6 +48,7 @@ def build(page, cta, OLIVER_BAND, LINE, SITE, faq_html, faq_ld, AV, preview=True
          ("你們會幫忙裝潢或找設計師嗎？","可以。我們可以介紹配合的設計與工程團隊，並在封板前安排設計、工程、設備三方一起做點位確認，避免完工後返工。建築、消防、結構等簽證仍由各專業單位執行與負責。"),
          ("費用怎麼算？","依地區、科別與委託範圍於洽詢時說明，訪談後提供書面報價。")]
 
+    WHY_SECTION='\n<section class="why"><div class="wrap">\n<div class="center" style="margin-bottom:44px"><p class="eyebrow">WHY AN AGENT</p><h2>想開業，卻不知道<br>「到底要問誰？」</h2><p class="sub">多數醫師找代辦，不是不會辦，而是卡在這三件事。</p></div>\n<div class="why-grid"><div class="why-card"><div class="why-q"><span class="why-n">01</span><h3>時間不夠用</h3><p>白天看診、晚上跟設計師討論裝修；公會、衛生局、國稅局、健保署的窗口都只在上班時間開，一趟送件就是半天。</p></div><div class="why-a"><b>我們怎麼接</b><p>送件、現勘陪同、領照由我們跑，你只在關鍵節點簽名確認；進度每週回報一次。</p></div></div><div class="why-card"><div class="why-q"><span class="why-n">02</span><h3>建築法規看不懂</h3><p>這個空間能不能設診所、使用類組對不對、平面配置符不符合衛生主管機關要求——簽約、裝修前沒確認，完工後可能要改。</p></div><div class="why-a"><b>我們怎麼接</b><p>開業地點評估先到現場看，列出要確認的項目；需要建築師或相關專業簽證時協助銜接，不讓問題留到現勘才發現。</p></div></div><div class="why-card"><div class="why-q"><span class="why-n">03</span><h3>各縣市規定不一樣</h3><p>各縣市公會的入會程序、衛生局的送件文件與現勘重點不盡相同，網路上查到的常是別的縣市或舊版本。</p></div><div class="why-a"><b>我們怎麼接</b><p>依開業所在縣市確認公會與衛生局的最新要求，整理成「你這一間」的文件清單與時程。</p></div></div></div>\n<div class="why-strip"><img src="img/oliver.svg" alt="" width="52" height="52" loading="lazy"><p><b>一個窗口，幫你問對的單位、帶對的文件。</b><span>各機關最新規定以主管機關公告為準；我們負責確認、整理與追蹤。</span></p></div>\n</div></section>\n'
     body=f'''
 <section class="hero simple" style="padding-bottom:40px"><div class="ring-bg"></div><div class="wrap">
 <p class="crumb"><a href="index.html">首頁</a> / 開業整合服務</p>
@@ -58,6 +59,7 @@ def build(page, cta, OLIVER_BAND, LINE, SITE, faq_html, faq_ld, AV, preview=True
 <div class="trust"><span>各科別醫療院所適用</span><span>含開業地點評估</span><span>每週回報進度</span></div>
 </div></section>
 
+{WHY_SECTION}
 <section class="alt" id="services"><div class="wrap">
 <p class="eyebrow">CORE SERVICE</p>
 <h2>開業代辦：地點評估到健保特約，一條線跑完</h2>
