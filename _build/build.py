@@ -22,7 +22,10 @@ def _abs(html):
     html=_re.sub(r'(href|src)="(?!https?:|/|#|mailto:)([^"]*)"', r'\1="/\2"', html)
     return html.replace('href="/index.html#','href="/#').replace('href="/index.html"','href="/"')
 def page(path,title,desc,body,active,schema,og="/img/og.jpg"):
-    return _abs(_page(path,title,desc,body,active,schema,og))
+    import re as _re
+    # cache-bust: 圖片換新版時改 IMG_V，瀏覽器/CDN 才會抓新圖
+    return _re.sub(r'(/img/[\w\-/]+\.(?:webp|png|jpg|svg))"',r'\1?v='+IMG_V+'"',_abs(_page(path,title,desc,body,active,schema,og)))
+IMG_V="20261114"
 def _page(path,title,desc,body,active,schema,og="/img/og.jpg"):
     url=SITE+"/"+("" if path=="index.html" else path)
     nav="".join(f'<a href="{h}"{" aria-current=\"page\"" if h==active else ""}{" class=\"hot\"" if h=="services.html" else ""}>{t}</a>' for h,t in [("attendance.html","考勤管理"),("materials.html","庫存管理"),("services.html","開業代辦"),("blog/","診所管理專欄"),("templates.html","免費範本")])
