@@ -19,7 +19,7 @@ def I(k,alt,cls="shot",lazy=True): return img(k,alt,*SIZES[k],cls=cls,lazy=lazy)
 
 import re as _re
 def _abs(html):
-    html=_re.sub(r'(href|src)="(?!https?:|/|#|mailto:)([^"]*)"', r'\1="/\2"', html)
+    html=_re.sub(r'(href|src)="(?!https?:|/|#|mailto:|tel:|line:)([^"]*)"', r'\1="/\2"', html)
     return html.replace('href="/index.html#','href="/#').replace('href="/index.html"','href="/"')
 def page(path,title,desc,body,active,schema,og="/img/og.jpg"):
     import re as _re
