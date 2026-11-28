@@ -197,6 +197,23 @@ open("index.html","w").write(page("index.html","Olimedi 奧里｜診所考勤管
  home,"index.html",[ORG,{"@context":"https://schema.org","@type":"WebSite","name":"Olimedi 奧里","url":SITE+"/","inLanguage":"zh-TW"},faq_ld(faq)]))
 
 # ================= product page
+PFAQ={"attendance.html":[
+("需要買打卡鐘或安裝 App 嗎？","不用。櫃台用平板或電腦打開打卡點網址就會顯示 QR，員工用自己的手機掃碼打卡。電腦、平板、手機打開瀏覽器就能用。"),
+("員工會不會拍 QR 照片請同事代打？","QR 預設每 10 秒換一張，舊的照片掃了不會過。需要的話可以打開自拍功能，打卡時同時留下照片。"),
+("兼職、時薪人員和四週變形工時都能用嗎？","可以。一般工時與四週變形工時都支援，時薪人員也能排班與計薪。四週變形工時的週期超過 160 小時，系統會提醒。"),
+("加班費和請假扣薪是怎麼算的？員工問得出來嗎？","系統依打卡、請假、加班紀錄算出薪資，薪資單每一行點開都看得到算式。加班可以選加班費或換補休。計算方式依診所設定，實際適用規定請以主管機關解釋為準。"),
+("月底薪資算完還能改嗎？","薪資鎖定後不能直接修改。要改必須先解鎖並填寫原因，原因會留在操作紀錄裡。"),
+("出勤紀錄會保存多久？可以匯出嗎？","系統保存出勤紀錄五年，出勤統計可以下載 CSV。停用時資料可以匯出帶走。"),
+("導入要多久？資料要自己從頭輸入嗎？","一般含教學約 3–5 天，依診所學習進度調整。員工資料建檔、班別與人員設定有專人協助，陪你一起完成。"),
+('費用怎麼算？', '依診所人數與使用的系統於洽詢時說明。加 LINE 跟 Oliver 說一聲，我們安排約 20 分鐘的免費線上展示。')],
+"materials.html":[
+("掃條碼要另外買掃碼槍嗎？","不用。用手機相機掃醫療器材條碼就可以，電腦、平板、手機都能操作，不用安裝 App。"),
+("沒有登錄 UDI 的一般耗材怎麼辦？","第一次手動建立品項，之後掃到同一個條碼就直接入庫。已登錄食藥署公開 UDI 資料的醫材，可以自動帶出品名與廠商。"),
+("快過期、快缺貨會提醒嗎？","會。快缺貨、快到期的品項系統會提醒，領用時快到期的批號會排在前面先用。"),
+("植入物的批號追蹤做得到嗎？","入庫與領用時會記下批號、效期、病歷號與醫師。廠商公告召回時，輸入批號就能查出用在哪些病歷上。"),
+("建議叫貨量是怎麼算的？","依近 30 天實際用量、目前庫存和廠商交貨天數計算，並依供應商分組，勾選後就能轉成採購單。"),
+("其他診所看得到我們的採購和庫存資料嗎？","每間診所的資料各自獨立，不與其他診所共用。系統依角色開放功能，並保留操作紀錄。"),
+('費用怎麼算？', '依診所人數與使用的系統於洽詢時說明。加 LINE 跟 Oliver 說一聲，我們安排約 20 分鐘的免費線上展示。')]}
 def prod(fn,name,title,desc,eyebrow,h1,lead,hero_k,hero_alt,stops,month,trust,other,day,stickers,pm):
     body=f'''
 <section class="hero"><div class="ring-bg"></div><div class="wrap">
@@ -216,12 +233,16 @@ def prod(fn,name,title,desc,eyebrow,h1,lead,hero_k,hero_alt,stops,month,trust,ot
 </div></section>
 {MONTH(*month)}
 {STEPS}
+<section><div class="wrap" style="max-width:820px">
+<p class="eyebrow">FAQ</p><h2 style="font-size:30px">Oli {name}常見問題</h2>
+<div style="margin-top:20px">{faq_html(PFAQ[fn])}</div>
+</div></section>
 {LINE_CTA()}
 <section style="padding-top:0"><div class="wrap center"><p>也在找{other[0]}？<a class="more" href="{other[1]}">看 Oli {other[0]} →</a></p></div></section>
 '''
     app={"@context":"https://schema.org","@type":"SoftwareApplication","name":"Oli "+name,"applicationCategory":"BusinessApplication","operatingSystem":"Web","description":desc,"url":f"{SITE}/{fn}","image":f"{SITE}/img/{hero_k}.webp","publisher":{"@type":"Organization","name":"Olimedi 奧里醫療資訊"}}
     bc={"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":SITE+"/"},{"@type":"ListItem","position":2,"name":"Oli "+name,"item":f"{SITE}/{fn}"}]}
-    open(fn,"w").write(page(fn,title,desc,body,fn,[app,bc]))
+    open(fn,"w").write(page(fn,title,desc,body,fn,[app,bc,faq_ld(PFAQ[fn])]))
 
 prod("attendance.html","考勤管理系統",
  "Oli考勤管理系統｜診所三診排班、QR 打卡、請假加班簽核、自動計薪｜Olimedi 奧里",
