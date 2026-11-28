@@ -67,7 +67,7 @@ def _page(path,title,desc,body,active,schema,og="/img/og.jpg"):
 </main>
 <footer><div class="wrap">
 <div><a class="brand" href="index.html">{logo(30,"#fff")}<b><span>Oli</span>medi</b></a><p style="margin:12px 0 0">把時間還給自己，診所的瑣事交給 Oli。</p></div>
-<nav><a href="attendance.html">Oli 考勤管理系統</a><a href="materials.html">Oli 庫存管理系統</a><a href="services.html">診所開業代辦</a><a href="blog/">診所管理專欄</a><a href="templates.html">免費範本</a><a href="{LINE}" target="_blank" rel="noopener">LINE：Oliver 行動管家</a><a href="https://www.facebook.com/profile.php?id=61595186213662" target="_blank" rel="noopener">Facebook 粉絲專頁</a><a href="https://www.instagram.com/olimedi2026/" target="_blank" rel="noopener">Instagram</a><a href="https://www.threads.com/@olimedi2026" target="_blank" rel="noopener">Threads</a></nav>
+<nav><a href="attendance.html">Oli 考勤管理系統</a><a href="materials.html">Oli 庫存管理系統</a><a href="services.html">診所開業代辦</a><a href="blog/">診所管理專欄</a><a href="templates.html">免費範本</a><a href="{LINE}" target="_blank" rel="noopener">LINE：Oliver 行動管家</a><a href="https://www.facebook.com/olimedi.tw" target="_blank" rel="noopener">Facebook 粉絲專頁</a><a href="https://www.instagram.com/olimedi2026/" target="_blank" rel="noopener">Instagram</a><a href="https://www.threads.com/@olimedi2026" target="_blank" rel="noopener">Threads</a></nav>
 <div style="width:100%;border-top:1px solid rgba(247,245,238,.14);padding-top:20px;line-height:1.9">© 2026 Olimedi 奧里醫療資訊 版權所有　·　<a href="privacy.html">隱私權聲明</a><br>本網站之文字、圖片、系統畫面、Logo 及 Oliver 角色圖像，未經書面授權不得轉載、重製或使用。<br>網站中的系統畫面皆為示範資料，人名、診所、病歷號與廠商名稱均為虛構。系統之薪資、加班、勞健保與特休等計算結果僅供參考，實際仍以相關法令及主管機關公告為準。實際功能以展示及合約內容為準。LINE 為 LY Corporation 之商標。</div>
 </div></footer>
 <div class="qr-modal" id="qrModal" hidden><div class="qr-box"><button class="qr-close" type="button" aria-label="關閉" onclick="closeQR()">×</button><img src="/img/oliver.svg" alt="" width="64" height="64" class="qr-oliver"><h3>用手機掃描，加 Oliver 好友</h3><p>打開手機 LINE → 右上角「加入好友」→ 掃描 QR Code</p><img src="/img/line-qr.png" alt="Oliver LINE 官方帳號 QR Code" width="220" height="220" class="qr-img"><p class="qr-id">或在 LINE 搜尋 ID：<b>@336appfx</b></p><a class="qr-desktop" href="line://ti/p/@336appfx">已安裝 LINE 電腦版？直接開啟</a></div></div>
@@ -125,7 +125,7 @@ def MONTH(pm,h2,p,ticks,k):
     t="".join(f"<div><b>{a}</b>{b}</div>" for a,b in ticks)
     return f'<section style="padding-top:0"><div class="wrap"><div class="month"><div><span class="pm">{pm}</span><h2>{h2}</h2><p>{p}</p><div class="ticks">{t}</div></div><img src="img/{k}.webp" alt="{h2}" loading="lazy"></div></div></section>'
 
-ORG={"@context":"https://schema.org","@type":"Organization","name":"Olimedi 奧里醫療資訊","alternateName":["奧里","Olimedi"],"url":SITE+"/","logo":SITE+"/favicon.svg","slogan":"把時間還給自己","sameAs":[LINE,"https://www.facebook.com/profile.php?id=61595186213662","https://www.instagram.com/olimedi2026/","https://www.threads.com/@olimedi2026"]}
+ORG={"@context":"https://schema.org","@type":"Organization","name":"Olimedi 奧里醫療資訊","alternateName":["奧里","Olimedi"],"url":SITE+"/","logo":SITE+"/favicon.svg","slogan":"把時間還給自己","sameAs":[LINE,"https://www.facebook.com/olimedi.tw","https://www.instagram.com/olimedi2026/","https://www.threads.com/@olimedi2026"]}
 def faq_html(items): return "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q,a in items)
 def faq_ld(items): return {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in items]}
 
