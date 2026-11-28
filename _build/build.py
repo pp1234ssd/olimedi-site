@@ -139,7 +139,7 @@ TEMPLATES=[
  ("特休表","特休天數與餘額計算表","輸入到職日與月薪，依勞基法第 38 條自動算出年資、本年度特休天數、年度起訖日、剩餘天數與未休工資試算，年度快結束會提醒排休。",["依年資自動計算特休天數","剩餘天數與未休工資試算","特休天數對照表"],"排班考勤"),
  ("FORM","診所開業 13 步驟檢核表","13 個階段、76 個檢核項目，每項填負責人、期限與狀態，完成度與成熟度自動計算；另有開業代辦進度表與開幕前 14 天倒數表。各科別醫療院所適用。",["13 階段總覽與成熟度自評","76 項檢核明細可篩選","開幕前 14 天倒數（日期自動帶出）"],"診所經營"),
 ]
-def tagcls(c): return {"庫存管理":"tag-g","排班考勤":"tag-s"}.get(c,"tag-b")
+def tagcls(c): return {"庫存管理":"tag-g","排班考勤":"tag-s","開業籌備":"tag-s"}.get(c,"tag-b")
 def tpl_cards(compact=False):
     out=""
     for kw,name,desc,feats,cat in TEMPLATES:
@@ -347,9 +347,10 @@ OG_JOBS=[]
 CATS={
  "排班考勤":("attendance","診所排班與考勤管理","排班、打卡、加班費、特休、請假與勞基法出勤規定的實用整理，適用各類醫療院所。","從排班表怎麼排、四週變形工時、加班費與特休怎麼算，到打卡與出勤紀錄保存，這裡整理診所人事行政最常遇到的問題與做法。","attendance.html","Oli 考勤管理系統","排班表"),
  "庫存管理":("inventory","診所耗材與庫存管理","耗材叫貨、盤點、效期與批號追蹤、成本控制的實用整理，適用各類醫療院所。","從耗材清單怎麼建、ABC 分級盤點、效期與批號追蹤，到叫貨 SOP 與對帳，這裡整理診所庫存管理最常遇到的問題與做法。","materials.html","Oli 庫存管理系統","盤點表"),
+ "開業籌備":("opening","診所開業籌備","診所開業流程、開業執照、建物使用類組、健保特約與衛生局現勘的實用整理，適用各類醫療院所。","從選址與建物用途、醫療機構開業申請、衛生局現勘，到健保特約與開幕前準備，這裡整理準備開業的醫師最常問的問題與做法。","services.html","診所開業整合服務","開業"),
  "診所經營":("management","診所行政與經營","行政工作清單、月底結算、人事成本、數位化導入等診所日常經營整理，適用各類醫療院所。","從每日行政清單、月底結算檢查，到人事成本與要不要導入系統的判斷，這裡整理診所經營者最常問的問題。","templates.html","免費範本","特休表"),
 }
-def tagcls(c): return {"庫存管理":"tag-g","排班考勤":"tag-s"}.get(c,"tag-b")
+def tagcls(c): return {"庫存管理":"tag-g","排班考勤":"tag-s","開業籌備":"tag-s"}.get(c,"tag-b")
 def catlink(c): return f"/blog/{CATS[c][0]}/" if c in CATS else "/blog/"
 
 def post(slug,title,desc,cat,intro,body,sources=None,related=(),date="2026-10-03"):
@@ -386,7 +387,7 @@ for _m in _meta.values():
 # blog index
 def _cards(plist): return "".join(f'<a class="post-card" href="/blog/{s}.html"><span class="tagline {tagcls(c)}" style="align-self:flex-start">{c}</span><h2>{t}</h2><p>{d}</p><span class="go">閱讀全文 →</span></a>' for s,t,d,c,i,dt in sorted(plist,key=lambda p:p[5],reverse=True))
 def _tabs(active=None):
-    items=[("/blog/","全部",active is None)]+[(f"/blog/{v[0]}/",k,active==k) for k,v in CATS.items()]
+    items=[("/blog/","全部",active is None)]+[(f"/blog/{v[0]}/",k,active==k) for k,v in CATS.items() if any(p[3]==k for p in POSTS)]
     return '<nav class="cat-tabs" aria-label="分類">'+"".join(f'<a href="{h}"{" aria-current=\"page\"" if a else ""}>{t}</a>' for h,t,a in items)+'</nav>'
 cards=_cards(POSTS)
 _unused="".join(f'<a class="post-card" href="/blog/{s}.html"><span class="tagline {"tag-g" if c=="庫存管理" else "tag-s"}" style="align-self:flex-start">{c}</span><h2>{t}</h2><p>{d}</p><span class="go">閱讀全文 →</span></a>' for s,t,d,c,i,dt in sorted(POSTS,key=lambda p:p[5],reverse=True))
@@ -408,6 +409,7 @@ _svc.build(page,cta,OLIVER_BAND,LINE,SITE,faq_html,faq_ld,AV,preview=False)
 # category pages
 for _c,(_cs,_h1,_desc,_lead,_plink,_pname,_kw) in CATS.items():
     _pl=[p for p in POSTS if p[3]==_c]
+    if not _pl: continue
     os.makedirs(f"blog/{_cs}",exist_ok=True)
     _body=f'''<section class="hero simple" style="padding-bottom:24px"><div class="ring-bg"></div><div class="wrap">
 <p class="crumb"><a href="/">首頁</a> / <a href="/blog/">診所管理專欄</a> / {_c}</p>
@@ -423,7 +425,7 @@ for _c,(_cs,_h1,_desc,_lead,_plink,_pname,_kw) in CATS.items():
     open(f"blog/{_cs}/index.html","w").write(page(f"blog/{_cs}/",f"{_h1}｜診所管理專欄｜Olimedi 奧里",_desc,_body,"blog/",[_cp,_bc]))
 
 # sitemap
-urls=[("",1.0),("attendance.html",0.9),("materials.html",0.9),("services.html",0.9,"2026-11-08"),("blog/",0.8),("templates.html",0.8),("launch-checklist.html",0.7,"2026-11-08")]+[(f"blog/{v[0]}/",0.7,max([p[5] for p in POSTS if p[3]==k],default="2026-10-05")) for k,v in CATS.items()]+[(f"blog/{p[0]}.html",0.7,p[5]) for p in POSTS]+[("privacy.html",0.3)]
+urls=[("",1.0),("attendance.html",0.9),("materials.html",0.9),("services.html",0.9,"2026-11-08"),("blog/",0.8),("templates.html",0.8),("launch-checklist.html",0.7,"2026-11-08")]+[(f"blog/{v[0]}/",0.7,max([p[5] for p in POSTS if p[3]==k],default="2026-10-05")) for k,v in CATS.items() if any(p[3]==k for p in POSTS)]+[(f"blog/{p[0]}.html",0.7,p[5]) for p in POSTS]+[("privacy.html",0.3)]
 open("sitemap.xml","w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+"".join(f"  <url><loc>{SITE}/{x[0]}</loc><lastmod>{x[2] if len(x)>2 else '2026-10-03'}</lastmod><priority>{x[1]}</priority></url>\n" for x in urls)+"</urlset>\n")
 print("blog",len(POSTS))
 

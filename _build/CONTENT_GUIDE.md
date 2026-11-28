@@ -3,7 +3,7 @@
 ## 上架流程
 1. 從 `_build/topics.md` 取第一個 `[ ]` 題目。
 2. 新增 `_build/posts/YYYY-MM-DD-NN-<英文-slug>.html`（日期用台北時間當天）。檔案開頭是 META JSON，格式照現有文章：
-   `slug, title, desc(搜尋摘要 80–120 字), cat(排班考勤／庫存管理／診所經營), intro, date, sources[[名稱,網址]], related[其他文章 slug]`，接著是文章 HTML 內文（h2/h3/p/ul/ol/table，表格外包 `<div class="table-wrap">`，提醒用 `<p class="note">`）。
+   `slug, title, desc(搜尋摘要 80–120 字), cat(排班考勤／庫存管理／開業籌備／診所經營), intro, date, sources[[名稱,網址]], related[其他文章 slug]`，接著是文章 HTML 內文（h2/h3/p/ul/ol/table，表格外包 `<div class="table-wrap">`，提醒用 `<p class="note">`）。
 3. 執行 `python3 _build/build.py`（會產生 blog/ 頁面、專欄首頁、sitemap.xml）。
 4. 在 topics.md 把該題改成 `[x]` 並附 slug；commit 並 push 到 main。
 
@@ -30,3 +30,10 @@
 - 題目後括號內的「目標字」要出現在 title 前段、desc、第一段與至少一個 h2（問句形式），不重複堆疊。
 - 同一主題群的文章 `related` 至少列 2 篇同群文章；內文至少 1 條連結到同群既有文章、1 條連結到 /templates.html 對應範本（用描述性文字，不用「點這裡」）。
 - 新文章上線後，回頭在同群的 1 篇舊文章加一條連到新文章的連結（改 `date` 為當天）。
+
+## 「診所開業」主題群補充規則（分類：開業籌備）
+- 文末與內文的導流目標是 /services.html（診所開業整合服務）與 /launch-checklist.html（開業檢核表）；檢核表一律寫「加 LINE 洽詢領取」，不提供直接下載。
+- 必查官方來源並附連結：全國法規資料庫（醫療法、醫療機構設置標準、建築法）、衛福部、健保署、內政部國土管理署、各縣市衛生局。
+- 各縣市規定與審查天數不同：只寫查得到官方出處的內容，其餘寫「依所在地衛生局／主管機關規定為準」；不要寫成各縣市換地名的雷同文章。
+- 不寫任何金額、代辦費用、行情或「幾天一定下來」；不寫「保證」「一定過」；不提及任何代辦同業、廠商或真實診所名稱。
+- 建築、消防、室內裝修涉及簽證的部分，寫明由建築師、消防設備師等專業人員執行與負責。
